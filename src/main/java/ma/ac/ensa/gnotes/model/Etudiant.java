@@ -107,4 +107,19 @@ public class Etudiant {
     public void setEtudiantModuleList(List<EtudiantModule> etudiantModuleList) {
         this.etudiantModuleList = etudiantModuleList;
     }
+
+    @Override
+    public String toString() {
+        return "Etudiant{" +
+                "id=" + id +
+                ", numero=" + numero +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", cin='" + cin + '\'' +
+                ", cne=" + cne +
+                ", privilege=" + privilege +
+                ", dateDeNaissance=" + dateDeNaissance +
+                ", etudiantModuleList=" + etudiantModuleList +
+                '}';
+    }
 }

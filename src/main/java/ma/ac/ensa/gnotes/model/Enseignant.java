@@ -62,4 +62,15 @@ public class Enseignant {
     public void setModules(List<Module> modules) {
         this.modules = modules;
     }
+
+    @Override
+    public String toString() {
+        return "Enseignant{" +
+                "id=" + id +
+                ", numero=" + numero +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", modules=" + modules +
+                '}';
+    }
 }

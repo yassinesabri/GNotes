@@ -65,4 +65,15 @@ public class EtudiantModule {
     public void setCommentaire(String commentaire) {
         this.commentaire = commentaire;
     }
+
+    @Override
+    public String toString() {
+        return "EtudiantModule{" +
+                "id=" + id +
+                ", etudiant=" + etudiant +
+                ", module=" + module +
+                ", note=" + note +
+                ", commentaire='" + commentaire + '\'' +
+                '}';
+    }
 }

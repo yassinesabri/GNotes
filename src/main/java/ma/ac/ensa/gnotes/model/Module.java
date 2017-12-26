@@ -12,7 +12,7 @@ public class Module {
     private long id;
 
     @Column(unique = true)
-    private long numero;
+    private String numero;
 
     private String nom;
 
@@ -39,11 +39,11 @@ public class Module {
         this.id = id;
     }
 
-    public long getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(long numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
@@ -93,5 +93,19 @@ public class Module {
 
     public void setEtudiantModuleList(List<EtudiantModule> etudiantModuleList) {
         this.etudiantModuleList = etudiantModuleList;
+    }
+
+    @Override
+    public String toString() {
+        return "Module{" +
+                "id=" + id +
+                ", numero='" + numero + '\'' +
+                ", nom='" + nom + '\'' +
+                ", filiere='" + filiere + '\'' +
+                ", cycle='" + cycle + '\'' +
+                ", semestre='" + semestre + '\'' +
+                ", enseignant=" + enseignant +
+                ", etudiantModuleList=" + etudiantModuleList +
+                '}';
     }
 }

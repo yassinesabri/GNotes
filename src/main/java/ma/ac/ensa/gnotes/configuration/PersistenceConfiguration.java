@@ -15,7 +15,6 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {"ma.ac.ensa.gnotes.repository"},transactionManagerRef = "txManager")
 public class PersistenceConfiguration {
     @Value("${mysql.driver}") String driver;
@@ -71,10 +70,4 @@ public class PersistenceConfiguration {
         return entityManagerFactory;
     }
 
-    @Bean
-    JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
-        JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactory);
-        return transactionManager;
-    }
 }
