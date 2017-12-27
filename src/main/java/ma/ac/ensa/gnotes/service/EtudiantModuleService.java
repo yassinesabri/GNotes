@@ -20,7 +20,7 @@ public class EtudiantModuleService {
         return etudiantModuleRepo.save(etudiantModule);
     }
 
-    public EtudiantModule findByEtudiantAndModule(Etudiant etudiant, Module module){
-        return etudiantModuleRepo.findByEtudiantAndModule(etudiant, module);
+    public EtudiantModule findByEtudiantAndModuleAndAnnee(Etudiant etudiant, Module module, String annee){
+        return etudiantModuleRepo.findByEtudiantAndModuleAndAnnee(etudiant, module, annee);
     }
 }

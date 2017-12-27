@@ -23,6 +23,8 @@ public class EtudiantModule {
 
     private String commentaire;
 
+    private String annee;
+
     public EtudiantModule() {
     }
 
@@ -66,6 +68,14 @@ public class EtudiantModule {
         this.commentaire = commentaire;
     }
 
+    public String getAnnee() {
+        return annee;
+    }
+
+    public void setAnnee(String annee) {
+        this.annee = annee;
+    }
+
     @Override
     public String toString() {
         return "EtudiantModule{" +
@@ -74,6 +84,7 @@ public class EtudiantModule {
                 ", module=" + module +
                 ", note=" + note +
                 ", commentaire='" + commentaire + '\'' +
+                ", annee='" + annee + '\'' +
                 '}';
     }
 }

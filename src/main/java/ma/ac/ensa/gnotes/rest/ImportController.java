@@ -51,6 +51,8 @@ public class ImportController {
 
         Map<Integer,Module> modules = new HashMap<>();
 
+        String annee = "";
+
         while (rows.hasNext()) {
             row = (HSSFRow) rows.next();
             Iterator cells = row.cellIterator();
@@ -73,17 +75,21 @@ public class ImportController {
             
             while (cells.hasNext()) {
                 cell = (HSSFCell) cells.next();
-                /*System.out.print("["+n_rows+":"+n_cells+"] :");
+                System.out.print("["+n_rows+":"+n_cells+"] :");
                 if (cell.getCellType() == HSSFCell.CELL_TYPE_STRING) {
                     System.out.println(cell.getStringCellValue() + " ");
                 } else if (cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC) {
                     System.out.println(cell.getNumericCellValue() + " ");
                 } else {
                     System.out.println();
-                }*/
+                }
 
+                //save year
+                if(n_rows==4 && n_cells==13){
+                    annee = cell.getStringCellValue();
+                }
                 //modules names
-                if(n_rows == 14 && n_cells == name_position){
+                else if(n_rows == 14 && n_cells == name_position){
                     Module module = moduleService.findByNumero(cell.getStringCellValue().replace(" ","").split("-")[0]);
                     //System.out.println(module);
                     if(module != null) {
@@ -97,7 +103,7 @@ public class ImportController {
                 else if(n_rows >=18){
                     if(n_cells == 1) {
                         etudiant = etudiantService.findByNumero((long)cell.getNumericCellValue());
-                        System.out.println(etudiant);
+                        //System.out.println(etudiant);
                     }
 
                     //save mark
@@ -125,7 +131,7 @@ public class ImportController {
                         Module currentModule = modules.get(n_cells);
                         if(currentModule != null && etudiant != null){
                             //check if record exist to update it or create a new one
-                            EtudiantModule etudiantModule = etudiantModuleService.findByEtudiantAndModule(etudiant, currentModule);
+                            EtudiantModule etudiantModule = etudiantModuleService.findByEtudiantAndModuleAndAnnee(etudiant, currentModule, annee);
                             if(etudiantModule == null){
                                 etudiantModule = new EtudiantModule();
                                 etudiantModule.setEtudiant(etudiant);
@@ -133,6 +139,7 @@ public class ImportController {
                             }
                             etudiantModule.setNote(mark);
                             etudiantModule.setCommentaire(comment);
+                            etudiantModule.setAnnee(annee);
                             etudiantModuleService.save(etudiantModule);
                         }
 
