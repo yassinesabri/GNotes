@@ -119,7 +119,6 @@ public class Etudiant {
                 ", cne=" + cne +
                 ", privilege=" + privilege +
                 ", dateDeNaissance=" + dateDeNaissance +
-                ", etudiantModuleList=" + etudiantModuleList +
                 '}';
     }
 }

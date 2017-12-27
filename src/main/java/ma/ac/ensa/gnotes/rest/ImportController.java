@@ -14,10 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.transaction.Transactional;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api")
@@ -35,6 +36,7 @@ public class ImportController {
     @RequestMapping(value = "importFile",method = RequestMethod.POST, consumes = "multipart/form-data")
     @ResponseBody
     public String importFile(@RequestPart("uploadFile") MultipartFile file) throws IOException {
+
         System.out.println("Start Import (fileName : " + file.getOriginalFilename() + ")");
 
         InputStream ExcelFileToRead = file.getInputStream();
@@ -46,19 +48,27 @@ public class ImportController {
 
         int n_cells = 1;
         int n_rows = 1;
+
         Map<Integer,Module> modules = new HashMap<>();
 
         while (rows.hasNext()) {
             row = (HSSFRow) rows.next();
             Iterator cells = row.cellIterator();
+
             n_cells = 1;
+
             int name_position=2;
+
             Etudiant etudiant = null;
 
-            int mark_position = 5;
-            int comment_position = 7;
             double mark = 0;
+
+            int mark_position = 5;
+
+            int comment_position = 7;
+
             String comment = "";
+
             boolean isComment = false;
             
             while (cells.hasNext()) {
@@ -84,39 +94,43 @@ public class ImportController {
                 }
 
                 //students
-                if(n_rows >=18){
+                else if(n_rows >=18){
                     if(n_cells == 1) {
                         etudiant = etudiantService.findByNumero((long)cell.getNumericCellValue());
                         System.out.println(etudiant);
                     }
 
                     //save mark
-                    if(n_cells == mark_position){
+                    else if(n_cells == mark_position){
                         //PcR Abs
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_STRING){
                             comment = cell.getStringCellValue();
                             isComment = true;
                         }
-                        if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
+                        else if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
                             mark = cell.getNumericCellValue();
                         }
                         mark_position += 3;
                     }
 
                     //save comment
-                    if(n_cells == comment_position){
-                        if(!isComment){
+                    else if(n_cells == comment_position){
+                        if(!isComment){ //otherwise it comment will be empty
                             comment = cell.getStringCellValue();
                         }
-                        comment_position +=3;
 
+                        comment_position +=3;
 
                         //add mark to BD
                         Module currentModule = modules.get(n_cells);
                         if(currentModule != null && etudiant != null){
-                            EtudiantModule etudiantModule = new EtudiantModule();
-                            etudiantModule.setEtudiant(etudiant);
-                            etudiantModule.setModule(currentModule);
+                            //check if record exist to update it or create a new one
+                            EtudiantModule etudiantModule = etudiantModuleService.findByEtudiantAndModule(etudiant, currentModule);
+                            if(etudiantModule == null){
+                                etudiantModule = new EtudiantModule();
+                                etudiantModule.setEtudiant(etudiant);
+                                etudiantModule.setModule(currentModule);
+                            }
                             etudiantModule.setNote(mark);
                             etudiantModule.setCommentaire(comment);
                             etudiantModuleService.save(etudiantModule);

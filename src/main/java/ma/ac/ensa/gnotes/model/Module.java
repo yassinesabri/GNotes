@@ -105,7 +105,6 @@ public class Module {
                 ", cycle='" + cycle + '\'' +
                 ", semestre='" + semestre + '\'' +
                 ", enseignant=" + enseignant +
-                ", etudiantModuleList=" + etudiantModuleList +
                 '}';
     }
 }
