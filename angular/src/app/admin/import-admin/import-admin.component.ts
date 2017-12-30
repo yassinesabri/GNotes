@@ -3,11 +3,11 @@ import {Http, Headers, RequestOptionsArgs, RequestOptions} from "@angular/http";
 import 'rxjs/add/operator/map';
 
 @Component({
-  selector: 'import-file',
-  templateUrl: './import-file.component.html',
-  styleUrls: ['./import-file.component.css']
+  selector: 'import-admin',
+  templateUrl: './import-admin.component.html',
+  styleUrls: ['./import-admin.component.css']
 })
-export class ImportFileComponent implements OnInit {
+export class ImportAdminComponent implements OnInit {
 
   importFile : File;
   constructor(private http:Http) { }
@@ -39,4 +39,5 @@ export class ImportFileComponent implements OnInit {
         );
     }
   }
+
 }
