@@ -1,60 +1,73 @@
-<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a class="logo navbar-brand">
-      GNOTES V0.9 BETA
-    </a>
 
-  </div>
-  <!-- /.navbar-header -->
-
-  <ul class="nav navbar-top-links navbar-right">
-    <!-- /.dropdown -->
-    <li class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-        <i class="fa fa-user fa-fw"></i>
-        <span>YASSINE SABRI</span>
-        <i class="fa fa-caret-down"></i>
+  <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="logo navbar-brand">
+        GNOTES V0.9 BETA
       </a>
-      <ul class="dropdown-menu dropdown-user">
-        <li><a (click)="logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-        </li>
-      </ul>
-      <!-- /.dropdown-user -->
-    </li>
-    <!-- /.dropdown -->
-  </ul>
-  <!-- /.Side Menu -->
 
-  <div class="navbar-default sidebar" role="navigation">
-    <div class="sidebar-nav navbar-collapse">
-      <ul class="nav" id="side-menu">
-        <li>
-          <a routerLink="/adminImport" routerLinkActive="true">
-            <i class="fa fa-dashboard fa-fw"></i>
-            <span class="menu-text">MENU 1</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/adminImport" routerLinkActive="true">
-            <i class="fa fa-wrench fa-fw"></i>
-            <span class="menu-text">MENU 2</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/adminImport" routerLinkActive="true">
-            <i class="fa fa-edit fa-fw"></i>
-            <span class="menu-text">MENU 3</span>
-          </a>
-        </li>
-      </ul>
     </div>
-    <!-- /.sidebar-collapse -->
-  </div>
-  <!-- /.navbar-static-side -->
-</nav>
+    <!-- /.navbar-header -->
+
+    <ul class="nav navbar-top-links navbar-right">
+      <!-- /.dropdown -->
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          <i class="fa fa-user fa-fw"></i>
+          <span *ngIf="loginAccount">{{loginAccount.nom}} {{loginAccount.prenom}}</span>
+          <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-user">
+          <li><a (click)="logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+          </li>
+        </ul>
+        <!-- /.dropdown-user -->
+      </li>
+      <!-- /.dropdown -->
+    </ul>
+    <!-- /.Side Menu -->
+
+    <div class="navbar-default sidebar" role="navigation">
+      <div class="sidebar-nav navbar-collapse">
+        <ul class="nav" id="side-menu">
+          <!-- Menu for Admin-->
+          <ng-container *ngIf="loginAccount && loginAccount.privilege=='ADMIN'">
+            <li>
+              <a routerLink="/adminImport" routerLinkActive="true">
+                <i class="fa fa-dashboard fa-fw"></i>
+                <span class="menu-text">Import des notes</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/adminImport" routerLinkActive="true">
+                <i class="fa fa-wrench fa-fw"></i>
+                <span class="menu-text">Gestion Etudiants</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/adminImport" routerLinkActive="true">
+                <i class="fa fa-edit fa-fw"></i>
+                <span class="menu-text">Gestion Enseignants</span>
+              </a>
+            </li>
+          </ng-container>
+          <!-- Menu for Teacher-->
+          <ng-container *ngIf="loginAccount && loginAccount.privilege=='TEACHER'">
+
+          </ng-container>
+          <!-- Menu for Student-->
+          <ng-container *ngIf="loginAccount && loginAccount.privilege=='STUDENT'">
+
+          </ng-container>
+        </ul>
+      </div>
+      <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+  </nav>
+

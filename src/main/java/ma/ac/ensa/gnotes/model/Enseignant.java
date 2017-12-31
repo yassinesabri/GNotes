@@ -1,5 +1,7 @@
 package ma.ac.ensa.gnotes.model;
 
+import ma.ac.ensa.gnotes.utils.Privilege;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,6 +18,11 @@ public class Enseignant {
     private String nom;
 
     private String prenom;
+
+    private String password;
+
+    @Enumerated(value = EnumType.STRING)
+    private Privilege privilege;
 
     @OneToMany(mappedBy = "enseignant")
     private List<Module> modules;
@@ -63,6 +70,22 @@ public class Enseignant {
         this.modules = modules;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Privilege getPrivilege() {
+        return privilege;
+    }
+
+    public void setPrivilege(Privilege privilege) {
+        this.privilege = privilege;
+    }
+
     @Override
     public String toString() {
         return "Enseignant{" +
@@ -71,6 +94,7 @@ public class Enseignant {
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", modules=" + modules +
+                ", privilege=" + privilege +
                 '}';
     }
 }

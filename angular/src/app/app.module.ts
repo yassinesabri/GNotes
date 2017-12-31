@@ -8,20 +8,24 @@ import {AngularFontAwesomeModule} from "angular-font-awesome";
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {ImportAdminComponent} from './admin/import-admin/import-admin.component';
 import {routes} from "./app.routes";
-
+import { LoginComponent } from './login/login.component';
+import {LoginService} from "./login/login.service";
+import {FormsModule} from "@angular/forms";
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    ImportAdminComponent
+    ImportAdminComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     HttpModule,
     AngularFontAwesomeModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FormsModule
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

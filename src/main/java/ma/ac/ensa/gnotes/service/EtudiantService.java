@@ -17,4 +17,12 @@ public class EtudiantService {
     public Etudiant findByNumero(long numero){
         return etudiantRepo.findByNumero(numero);
     }
+
+    public Etudiant findByCneAndCin(int cne, String cin){
+        Etudiant etudiant = etudiantRepo.findByCneAndCin(cne, cin);
+        if(etudiant != null){
+            etudiant.setEtudiantModuleList(null);
+        }
+        return etudiant;
+    }
 }

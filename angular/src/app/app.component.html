@@ -1,4 +1,6 @@
 <div id="wrapper">
-    <app-dashboard></app-dashboard>
+    <ng-container *ngIf="router.url != '/login'">
+      <app-dashboard></app-dashboard>
+    </ng-container>
     <router-outlet></router-outlet>
 </div>
