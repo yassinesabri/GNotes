@@ -23,7 +23,7 @@
         </div>
         <div class="form-group">
           <label for="email">Email :</label>
-          <input class="form-control" id="email"  type="email"  placeholder="Example@email.com" required>
+          <input class="form-control" id="email" value="{{etudiant?.email}}"  type="email"  placeholder="Example@email.com" required>
         </div>
         <div class="form-group">
           <label for="birthday">Date Of Birth :</label>
@@ -32,15 +32,15 @@
 
         <div class="form-group">
           <label for="phoneNumber">Phone Number :</label>
-          <input class="form-control" id="phoneNumber"  type="tel"  placeholder="+2126-00-00-00-00" pattern="^\+2126-\d{2}-\d{2}-\d{2}-\d{2}$" required>
+          <input class="form-control" id="phoneNumber"  type="tel"  value="{{etudiant?.telephone}}"  placeholder="+2126-00-00-00-00" pattern="^\+2126-\d{2}-\d{2}-\d{2}-\d{2}$" required>
         </div>
         <div class="form-group">
           <label for="adresse">Adresse :</label>
-          <textarea class="form-control"  id="adresse" rows="3" required></textarea>
+          <textarea class="form-control"  id="adresse" rows="3" value="{{etudiant?.adresse}}"  required></textarea>
         </div>
         <div class="form-group">
           <label for="zipCode">ZIP code :</label>
-          <input class="form-control" id="zipCode" minlength="5" maxlength="5"  type="text" required>
+          <input class="form-control" id="zipCode" minlength="5" maxlength="5"  value="{{etudiant?.codePostale}}"  type="text" required>
         </div>
         <button type="button" class="btn btn-primary btn-lg btn-block">Update</button>
       </fieldset>
