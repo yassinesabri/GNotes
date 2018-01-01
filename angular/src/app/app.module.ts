@@ -9,14 +9,18 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {ImportAdminComponent} from './admin/import-admin/import-admin.component';
 import {routes} from "./app.routes";
 import { LoginComponent } from './login/login.component';
+import { EtudiantComponent } from './etudiant/etudiant.component';
 import {LoginService} from "./login/login.service";
 import {FormsModule} from "@angular/forms";
+import {EtudiantService} from "./etudiant/etudiant.service";
+
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     ImportAdminComponent,
     LoginComponent,
+    EtudiantComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,10 @@ import {FormsModule} from "@angular/forms";
     RouterModule.forRoot(routes),
     FormsModule
   ],
-  providers: [LoginService],
+  providers: [
+    LoginService,
+    EtudiantService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

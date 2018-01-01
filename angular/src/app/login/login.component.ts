@@ -28,12 +28,13 @@ export class LoginComponent implements OnInit {
 
         }else{
           if(account.privilege == "STUDENT"){
-            this.router.navigate([]);
+            this.router.navigate(['student']);
           }
           else if(account.privilege == "TEACHER"){
             this.router.navigate([]);
           }
           else if(account.privilege == "ADMIN"){
+
             this.router.navigate(['adminImport']);
           }else{
             console.log("privilege inconnu");
