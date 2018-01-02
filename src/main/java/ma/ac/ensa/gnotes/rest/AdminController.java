@@ -245,7 +245,7 @@ public class AdminController {
         return enseignantService.findByNumero(numero);
     }
 
-    @RequestMapping(value = "updateStudent", method = RequestMethod.PUT)
+    @RequestMapping(value = "updateTeacher", method = RequestMethod.PUT)
     public String updateTeacher(@RequestBody Etudiant etudiant){
         Etudiant old = etudiantService.findById(etudiant.getId());
         etudiant.setEtudiantModuleList(old.getEtudiantModuleList());
