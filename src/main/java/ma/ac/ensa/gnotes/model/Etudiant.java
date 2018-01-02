@@ -24,6 +24,14 @@ public class Etudiant {
 
     private int cne;
 
+    private String adresse;
+
+    private String telephone;
+
+    private String codePostale;
+
+    private String email;
+
     @Enumerated(value = EnumType.STRING)
     private Privilege privilege;
 
@@ -100,6 +108,22 @@ public class Etudiant {
         this.dateDeNaissance = dateDeNaissance;
     }
 
+    public String getAdresse() { return adresse; }
+
+    public void setAdresse(String adresse) { this.adresse = adresse; }
+
+    public String getTelephone() { return telephone; }
+
+    public void setTelephone(String telephone) { this.telephone = telephone; }
+
+    public String getCodePostale() { return codePostale; }
+
+    public void setCodePostale(String codePostale) { this.codePostale = codePostale; }
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
+
     public List<EtudiantModule> getEtudiantModuleList() {
         return etudiantModuleList;
     }
@@ -117,6 +141,10 @@ public class Etudiant {
                 ", prenom='" + prenom + '\'' +
                 ", cin='" + cin + '\'' +
                 ", cne=" + cne +
+                ", email=" + email +
+                ", telephone =" + telephone +
+                ", addresse=" + adresse +
+                ", code postale=" + codePostale +
                 ", privilege=" + privilege +
                 ", dateDeNaissance=" + dateDeNaissance +
                 '}';

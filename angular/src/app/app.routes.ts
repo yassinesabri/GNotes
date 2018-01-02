@@ -4,11 +4,13 @@ import {LoginComponent} from "./login/login.component";
 import {StudentsComponent} from "./admin/students/students.component";
 import {CreateStudentComponent} from "./admin/students/create-student/create-student.component";
 import {UpdateStudentsComponent} from "./admin/students/update-students/update-students.component";
+import {EtudiantComponent} from "./etudiant/etudiant.component";
 
 export const routes: Routes = [
   {path: '', pathMatch : 'full', redirectTo: 'login'},
-  {path: 'login' , component : LoginComponent},
   {path: 'adminImport', component: ImportAdminComponent},
+  {path: 'login' , component : LoginComponent},
+  {path: 'student' , component : EtudiantComponent}
   {path: 'students' , component : StudentsComponent},
   {path: 'createStudent' , component : CreateStudentComponent},
   {path: 'updateStudents' , component : UpdateStudentsComponent}

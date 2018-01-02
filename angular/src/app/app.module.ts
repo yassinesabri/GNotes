@@ -9,11 +9,14 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {ImportAdminComponent} from './admin/import-admin/import-admin.component';
 import {routes} from "./app.routes";
 import { LoginComponent } from './login/login.component';
+import { EtudiantComponent } from './etudiant/etudiant.component';
 import {LoginService} from "./login/login.service";
 import {FormsModule} from "@angular/forms";
 import { StudentsComponent } from './admin/students/students.component';
 import { CreateStudentComponent } from './admin/students/create-student/create-student.component';
 import { UpdateStudentsComponent } from './admin/students/update-students/update-students.component';
+import {EtudiantService} from "./etudiant/etudiant.service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +26,7 @@ import { UpdateStudentsComponent } from './admin/students/update-students/update
     StudentsComponent,
     CreateStudentComponent,
     UpdateStudentsComponent,
+    EtudiantComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,10 @@ import { UpdateStudentsComponent } from './admin/students/update-students/update
     RouterModule.forRoot(routes),
     FormsModule
   ],
-  providers: [LoginService],
+  providers: [
+    LoginService,
+    EtudiantService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

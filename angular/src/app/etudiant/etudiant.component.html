@@ -1,0 +1,49 @@
+<div id="page-wrapper">
+    <form role="form" id="UserProfile">
+      <fieldset >
+        <div class="form-group">
+          <label for="number">Number :</label>
+          <input class="form-control" id="number" value={{etudiant?.numero}} type="text"  disabled>
+        </div>
+        <div class="form-group">
+          <label for="lname">Last Name :</label>
+          <input class="form-control" id="lname" value={{etudiant?.nom}} type="text" disabled>
+        </div>
+        <div class="form-group">
+          <label for="fname">First Name :</label>
+          <input class="form-control" id="fname" value={{etudiant?.prenom}} type="text"  disabled>
+        </div>
+        <div class="form-group">
+          <label for="cne">CNE :</label>
+          <input class="form-control" id="cne" value={{etudiant?.cne}} type="text"  disabled>
+        </div>
+        <div class="form-group">
+          <label for="cin">CIN :</label>
+          <input class="form-control" id="cin" value={{etudiant?.cin}} type="text"  disabled>
+        </div>
+        <div class="form-group">
+          <label for="email">Email :</label>
+          <input class="form-control" id="email" value="{{etudiant?.email}}"  type="email"  placeholder="Example@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="birthday">Date Of Birth :</label>
+          <input class="form-control" id="birthday" value={{etudiant?.dateDeNaissance}} type="text"  disabled>
+        </div>
+
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number :</label>
+          <input class="form-control" id="phoneNumber"  type="tel"  value="{{etudiant?.telephone}}"  placeholder="+2126-00-00-00-00" pattern="^\+2126-\d{2}-\d{2}-\d{2}-\d{2}$" required>
+        </div>
+        <div class="form-group">
+          <label for="adresse">Adresse :</label>
+          <textarea class="form-control"  id="adresse" rows="3" value="{{etudiant?.adresse}}"  required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="zipCode">ZIP code :</label>
+          <input class="form-control" id="zipCode" minlength="5" maxlength="5"  value="{{etudiant?.codePostale}}"  type="text" required>
+        </div>
+        <button type="button" class="btn btn-primary btn-lg btn-block">Update</button>
+      </fieldset>
+    </form>
+
+</div>
