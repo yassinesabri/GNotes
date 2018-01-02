@@ -4,19 +4,18 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {RouterModule} from "@angular/router";
 import {HttpModule} from "@angular/http";
-import {AngularFontAwesomeModule} from "angular-font-awesome";
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {ImportAdminComponent} from './admin/import-admin/import-admin.component';
 import {routes} from "./app.routes";
-import { LoginComponent } from './login/login.component';
-import { EtudiantComponent } from './etudiant/etudiant.component';
+import {LoginComponent} from './login/login.component';
+import {EtudiantComponent} from './etudiant/etudiant.component';
 import {LoginService} from "./login/login.service";
 import {FormsModule} from "@angular/forms";
-import { StudentsComponent } from './admin/students/students.component';
-import { CreateStudentComponent } from './admin/students/create-student/create-student.component';
-import { UpdateStudentsComponent } from './admin/students/update-students/update-students.component';
+import {StudentsComponent} from './admin/students/students.component';
+import {CreateStudentComponent} from './admin/students/create-student/create-student.component';
+import {UpdateStudentsComponent} from './admin/students/update-students/update-students.component';
 import {EtudiantService} from "./etudiant/etudiant.service";
-import { UpdateStudentComponent } from './admin/students/update-student/update-student.component';
+import {UpdateStudentComponent} from './admin/students/update-student/update-student.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +32,6 @@ import { UpdateStudentComponent } from './admin/students/update-student/update-s
   imports: [
     BrowserModule,
     HttpModule,
-    AngularFontAwesomeModule,
     RouterModule.forRoot(routes),
     FormsModule
   ],

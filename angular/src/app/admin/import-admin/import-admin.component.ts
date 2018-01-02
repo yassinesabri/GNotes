@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Headers, Http, RequestOptions} from "@angular/http";
 import 'rxjs/add/operator/map';
+import {Router} from "@angular/router";
+import {LoginService} from "../../login/login.service";
 
 declare var jQuery:any;
 let $ = jQuery;
@@ -14,11 +16,15 @@ export class ImportAdminComponent implements OnInit {
 
   importFile : File;
 
-  constructor(private http:Http) {
-
+  constructor(private http:Http, private router: Router, private loginService:LoginService) {
+    //not connected
+    if(!this.loginService.account){
+      this.router.navigate(['/login']);
+    }
   }
 
   ngOnInit() {
+    console.log("dashboard loaded");
   }
 
   fileChange(event:any){

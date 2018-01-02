@@ -10,12 +10,11 @@ import {LoginService} from "../login/login.service";
 export class DashboardComponent implements OnInit {
   loginAccount : any;
   constructor(private router:Router, private loginService:LoginService) {
-    /*this.loginService.subscribe(account => {
-      console.log("call :");
-      console.log(account);
-      this.loginAccount = account;
-    });*/
     this.loginAccount = this.loginService.account;
+    //not connected
+    if(!this.loginAccount){
+      this.router.navigate(['/login']);
+    }
   }
 
   ngOnInit() {
@@ -23,6 +22,7 @@ export class DashboardComponent implements OnInit {
   }
 
   logout() {
+    this.loginService.logout();
     this.router.navigate(['/login']);
   }
 }

@@ -6,10 +6,13 @@ import {Subject} from "rxjs/Subject";
 import {isNull} from "util";
 
 @Injectable()
-export class LoginService extends Subject<any>{
+export class LoginService{
   public account : any; //student or teacher object from server
   constructor(private http:Http){
-    super();
+    let login = JSON.parse(localStorage.getItem("loginAccount"));
+    if(login){
+      this.account = login;
+    }
   }
   authenticate(isStudent:boolean, account:LoginAccount) : Observable<any> {
     let headers = new Headers();
@@ -20,12 +23,14 @@ export class LoginService extends Subject<any>{
           let res  = response.json();
           if(res.privilege){
             this.account = res;
+            localStorage.setItem("loginAccount",JSON.stringify(this.account));
           }else{
             this.account = null;
           }
-          this.next(this.account); //subscribe to the service auto via Subject
           return this.account;
       });
   }
-
+  logout(){
+    localStorage.removeItem("loginAccount");
+  }
 }

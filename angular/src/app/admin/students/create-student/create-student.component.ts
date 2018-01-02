@@ -1,6 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Student} from "../student";
 import {Http} from "@angular/http";
+import {Router} from "@angular/router";
+import {LoginService} from "../../../login/login.service";
 
 declare var jQuery:any;
 let $ = jQuery;
@@ -16,8 +18,12 @@ export class CreateStudentComponent implements OnInit {
 
   @ViewChild('studentForm', {read: ElementRef}) studentForm:ElementRef; //Form Reference
 
-  constructor(private http:Http) {
+  constructor(private http:Http, private router: Router, private loginService:LoginService) {
     this.student = new Student();
+    //not connected
+    if(!this.loginService.account){
+      this.router.navigate(['/login']);
+    }
   }
 
   ngOnInit() {

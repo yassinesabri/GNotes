@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Http, RequestOptions, RequestOptionsArgs, Headers} from "@angular/http";
 import {Router} from "@angular/router";
+import {LoginService} from "../../../login/login.service";
 
 declare var jQuery:any;
 let $ = jQuery;
@@ -15,7 +16,12 @@ export class UpdateStudentsComponent implements OnInit {
   students:any;
   searchFilter:string;
 
-  constructor(private http:Http, private router:Router) { }
+  constructor(private http:Http, private router: Router, private loginService:LoginService) {
+    //not connected
+    if(!this.loginService.account){
+      this.router.navigate(['/login']);
+    }
+  }
 
   ngOnInit() {
     this.fetchStudents();

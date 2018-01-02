@@ -1,10 +1,8 @@
 import {Injectable} from "@angular/core";
-import {Observable} from "rxjs/Observable";
-import {Http, Headers, RequestOptionsArgs, RequestOptions} from "@angular/http";
+import {Headers, Http, RequestOptions} from "@angular/http";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import {observable} from "rxjs/symbol/observable";
 
 
 @Injectable()
@@ -18,11 +16,6 @@ export class EtudiantService{
 
   getUser(){
     return this._http.get(this.baseUrl+"/etudiant",this.options)
-      .map(res => res.json())
-      .catch(this.errorHandler);
-  }
-
-  errorHandler(error:Response){
-    return observable.throw(error||"SERVER ERROR");
+      .map(res => res.json());
   }
 }

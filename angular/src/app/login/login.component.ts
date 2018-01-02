@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     this.loginService.authenticate(this.account.isStudent,this.account)
       .subscribe(account => {
         this.authAccount = account;
-        console.log(account);
+        //console.log(account);
         if(account == null){
           this.notifyMessage("Login erreur : identifients incorrects");
         }else{
