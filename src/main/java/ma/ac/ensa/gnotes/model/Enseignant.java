@@ -13,7 +13,7 @@ public class Enseignant {
     private long id;
 
     @Column(unique = true)
-    private long numero;
+    private String numero;
 
     private String nom;
 
@@ -38,11 +38,11 @@ public class Enseignant {
         this.id = id;
     }
 
-    public long getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(long numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 

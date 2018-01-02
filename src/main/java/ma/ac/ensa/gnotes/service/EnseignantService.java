@@ -13,7 +13,7 @@ public class EnseignantService {
     @Autowired
     private EnseignantRepo enseignantRepo;
 
-    public Enseignant findByNumeroAndPassword(long numero, String password){
+    public Enseignant findByNumeroAndPassword(String numero, String password){
         Enseignant enseignant = enseignantRepo.findByNumeroAndPassword(numero, password);
         if(enseignant != null){
             enseignant.setModules(null);

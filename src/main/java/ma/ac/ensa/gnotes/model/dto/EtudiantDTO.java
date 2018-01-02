@@ -1,19 +1,8 @@
-package ma.ac.ensa.gnotes.model;
+package ma.ac.ensa.gnotes.model.dto;
 
 import ma.ac.ensa.gnotes.utils.Privilege;
 
-import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
-
-@Entity
-public class Etudiant {
-
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "etudiant_id")
-    private long id;
-
-    @Column(unique = true)
+public class EtudiantDTO {
     private String numero;
 
     private String nom;
@@ -24,24 +13,21 @@ public class Etudiant {
 
     private int cne;
 
-    @Enumerated(value = EnumType.STRING)
     private Privilege privilege;
 
-    @Temporal(TemporalType.DATE)
-    private Date dateDeNaissance;
+    private String dateDeNaissance;
 
-    @OneToMany(mappedBy = "etudiant")
-    private List<EtudiantModule> etudiantModuleList;
-
-    public Etudiant() {
+    public EtudiantDTO(String numero, String nom, String prenom, String cin, int cne, Privilege privilege, String dateDeNaissance) {
+        this.numero = numero;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.cin = cin;
+        this.cne = cne;
+        this.privilege = privilege;
+        this.dateDeNaissance = dateDeNaissance;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public EtudiantDTO() {
     }
 
     public String getNumero() {
@@ -92,33 +78,24 @@ public class Etudiant {
         this.privilege = privilege;
     }
 
-    public Date getDateDeNaissance() {
+    public String getDateDeNaissance() {
         return dateDeNaissance;
     }
 
-    public void setDateDeNaissance(Date dateDeNaissance) {
+    public void setDateDeNaissance(String dateDeNaissance) {
         this.dateDeNaissance = dateDeNaissance;
-    }
-
-    public List<EtudiantModule> getEtudiantModuleList() {
-        return etudiantModuleList;
-    }
-
-    public void setEtudiantModuleList(List<EtudiantModule> etudiantModuleList) {
-        this.etudiantModuleList = etudiantModuleList;
     }
 
     @Override
     public String toString() {
-        return "Etudiant{" +
-                "id=" + id +
-                ", numero=" + numero +
+        return "EtudiantDTO{" +
+                "numero=" + numero +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", cin='" + cin + '\'' +
                 ", cne=" + cne +
                 ", privilege=" + privilege +
-                ", dateDeNaissance=" + dateDeNaissance +
+                ", dateDeNaissance='" + dateDeNaissance + '\'' +
                 '}';
     }
 }

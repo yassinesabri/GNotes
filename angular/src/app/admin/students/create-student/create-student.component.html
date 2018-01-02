@@ -1,0 +1,76 @@
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header" style="color: #0d6aad">Créer un compte étudiant</h1>
+    </div>
+    <div class="col-lg-5">
+      <form role="form" (ngSubmit)="addStudent()" #studentForm="ngForm">
+        <div class="form-group"
+             [ngClass]="{
+                  'has-success' : Nom.valid && (Nom.dirty || Nom.touched),
+                  'has-error' : Nom.invalid && (Nom.dirty || Nom.touched)
+             }">
+          <label>Nom</label>
+          <input class="form-control" name="Nom" [(ngModel)]="student.nom" required #Nom="ngModel">
+          <p class="help-block" *ngIf="Nom.errors && Nom.errors.required && (Nom.dirty || Nom.touched) ">Champs obligatoire</p>
+        </div>
+
+        <div class="form-group"
+             [ngClass]="{
+                  'has-success' : Prenom.valid && (Prenom.dirty || Prenom.touched),
+                  'has-error' : Prenom.invalid && (Prenom.dirty || Prenom.touched)
+             }">
+          <label>Prenom</label>
+          <input class="form-control" name="Prenom" [(ngModel)]="student.prenom" required #Prenom="ngModel">
+          <p class="help-block" *ngIf="Prenom.errors && Prenom.errors.required && (Prenom.dirty || Prenom.touched) ">Champs obligatoire</p>
+        </div>
+
+        <div class="form-group"
+             [ngClass]="{
+                  'has-success' : DatedeNaissance.valid && (DatedeNaissance.dirty || DatedeNaissance.touched),
+                  'has-error' : DatedeNaissance.invalid && (DatedeNaissance.dirty || DatedeNaissance.touched)
+             }">
+          <label>Date de Naissance</label>
+          <input class="form-control" placeholder="mm/dd/yyyy" name="DatedeNaissance" [(ngModel)]="student.dateDeNaissance" required #DatedeNaissance="ngModel">
+          <p class="help-block">Example : 20/06/1994.</p>
+          <p class="help-block" *ngIf="DatedeNaissance.errors && DatedeNaissance.errors.required && (DatedeNaissance.dirty || DatedeNaissance.touched) ">Champs obligatoire</p>
+        </div>
+
+        <div class="form-group"
+             [ngClass]="{
+                  'has-success' : Numero.valid && (Numero.dirty || Numero.touched),
+                  'has-error' : Numero.invalid && (Numero.dirty || Numero.touched)
+             }">
+          <label>Numero</label>
+          <input class="form-control" name="Numero" [(ngModel)]="student.numero" required pattern="[0-9]*" #Numero="ngModel">
+          <p class="help-block" *ngIf="Numero.errors && Numero.errors.required && (Numero.dirty || Numero.touched) ">Champs obligatoire</p>
+          <p class="help-block" *ngIf="Numero.errors && Numero.errors.pattern && (Numero.dirty || Numero.touched)">Numero doit contenir que des numeros</p>
+        </div>
+
+        <div class="form-group"
+             [ngClass]="{
+                  'has-success' : CNE.valid && (CNE.dirty || CNE.touched),
+                  'has-error' : CNE.invalid && (CNE.dirty || CNE.touched)
+             }">
+          <label>CNE</label>
+          <input class="form-control" name="CNE" [(ngModel)]="student.cne" required pattern="[0-9]*" #CNE="ngModel">
+          <p class="help-block" *ngIf="CNE.errors && CNE.errors.required && (CNE.dirty || CNE.touched) ">Champs obligatoire</p>
+          <p class="help-block" *ngIf="CNE.errors && CNE.errors.pattern && (CNE.dirty || CNE.touched)">CNE doit contenir que des numeros</p>
+        </div>
+
+        <div class="form-group"
+             [ngClass]="{
+                  'has-success' : CIN.valid && (CIN.dirty || CIN.touched),
+                  'has-error' : CIN.invalid && (CIN.dirty || CIN.touched)
+             }">
+          <label>CIN</label>
+          <input class="form-control" name="CIN" [(ngModel)]="student.cin" required #CIN="ngModel">
+          <p class="help-block" *ngIf="CIN.errors && CIN.errors.required && (CIN.dirty || CIN.touched) ">Champs obligatoire</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="studentForm.invalid">Ajouter</button>
+        <button type="reset" class="btn btn-danger">Reset</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {Http, Headers, RequestOptionsArgs, RequestOptions} from "@angular/http";
+import {Component, OnInit} from '@angular/core';
+import {Headers, Http, RequestOptions} from "@angular/http";
 import 'rxjs/add/operator/map';
+
+declare var jQuery:any;
+let $ = jQuery;
 
 @Component({
   selector: 'import-admin',
@@ -10,7 +13,10 @@ import 'rxjs/add/operator/map';
 export class ImportAdminComponent implements OnInit {
 
   importFile : File;
-  constructor(private http:Http) { }
+
+  constructor(private http:Http) {
+
+  }
 
   ngOnInit() {
   }
@@ -24,6 +30,7 @@ export class ImportAdminComponent implements OnInit {
 
   import(){
     if(this.importFile != null){
+      $("#loading").show();
       let formData : FormData = new FormData();
       formData.append('uploadFile', this.importFile, this.importFile.name);
 
@@ -34,9 +41,45 @@ export class ImportAdminComponent implements OnInit {
       this.http.post("api/importFile",formData,options)
         .map(res => res.text())
         .subscribe(res => {
+            $("#loading").hide();
             console.log(res);
+            this.notifyMessage(res);
           }
         );
+    }else{
+      this.notifyMessage("KO : Veuillez choisir un fichier excel");
+    }
+  }
+
+  notifyMessage(message:string){
+    if(message.indexOf("OK") !== -1){
+      $.notify(message, {
+        type: 'success',
+        delay : 2000,
+        newest_on_top: true,
+        placement: {
+          from: "top",
+          align: "center"
+        },
+        animate: {
+          enter: 'animated fadeInDown',
+          exit: 'animated fadeOutUp'
+        }
+      });
+    }else{
+      $.notify(message, {
+        type: 'danger',
+        delay : 2000,
+        newest_on_top: true,
+        placement: {
+          from: "top",
+          align: "center"
+        },
+        animate: {
+          enter: 'animated fadeInDown',
+          exit: 'animated fadeOutUp'
+        }
+      });
     }
   }
 

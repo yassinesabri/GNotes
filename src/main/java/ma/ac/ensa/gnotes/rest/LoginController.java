@@ -24,7 +24,7 @@ public class LoginController {
         if(account.isStudent){
             return etudiantService.findByCneAndCin(Integer.parseInt(account.cne), account.cin);
         }else{
-            return enseignantService.findByNumeroAndPassword(Long.parseLong(account.numero), account.password);
+            return enseignantService.findByNumeroAndPassword(account.numero, account.password);
         }
     }
 }
