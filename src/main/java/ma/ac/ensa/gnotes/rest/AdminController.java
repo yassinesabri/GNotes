@@ -1,10 +1,12 @@
 package ma.ac.ensa.gnotes.rest;
 
+import ma.ac.ensa.gnotes.model.Enseignant;
 import ma.ac.ensa.gnotes.model.Etudiant;
 import ma.ac.ensa.gnotes.model.EtudiantModule;
 import ma.ac.ensa.gnotes.model.Module;
 import ma.ac.ensa.gnotes.model.dto.EtudiantDTO;
 import ma.ac.ensa.gnotes.model.mapper.EtudiantDtoTOEntityMapper;
+import ma.ac.ensa.gnotes.service.EnseignantService;
 import ma.ac.ensa.gnotes.service.EtudiantModuleService;
 import ma.ac.ensa.gnotes.service.EtudiantService;
 import ma.ac.ensa.gnotes.service.ModuleService;
@@ -37,6 +39,9 @@ public class AdminController {
 
     @Autowired
     private EtudiantModuleService etudiantModuleService;
+
+    @Autowired
+    private EnseignantService enseignantService;
 
     @RequestMapping(value = "importFile",method = RequestMethod.POST, consumes = "multipart/form-data")
     @ResponseBody
@@ -212,6 +217,45 @@ public class AdminController {
     @RequestMapping(value = "deleteStudent/{id}", method = RequestMethod.DELETE)
     public String deleteStudent(@PathVariable("id") String id){
         etudiantService.deleteById((long)Integer.parseInt(id));
+        return "OK : supression avec succès";
+    }
+
+    @RequestMapping(value = "createTeacher", method = RequestMethod.POST)
+    public String createTeacher(@RequestBody Enseignant enseignant){
+        Enseignant search = enseignantService.findByNumero(enseignant.getNumero());
+        if(search == null){
+            enseignantService.save(enseignant);
+            return "OK : ajouté avec succès";
+        }else{
+            return "KO : compte déjà existant";
+        }
+    }
+
+    @RequestMapping(value = "fetchTeachers/{numero}", method = RequestMethod.GET)
+    public List<Enseignant> fetchTeachers(@PathVariable("numero") String numero){
+        if(numero.equals("nothing")){
+            return enseignantService.findAll();
+        }else{
+            return enseignantService.findByNumeroContains(numero);
+        }
+    }
+
+    @RequestMapping(value = "fetchTeacher/{numero}", method = RequestMethod.GET)
+    public Enseignant fetchTeacher(@PathVariable("numero") String numero){
+        return enseignantService.findByNumero(numero);
+    }
+
+    @RequestMapping(value = "updateTeacher", method = RequestMethod.PUT)
+    public String updateTeacher(@RequestBody Etudiant etudiant){
+        Etudiant old = etudiantService.findById(etudiant.getId());
+        etudiant.setEtudiantModuleList(old.getEtudiantModuleList());
+        etudiantService.save(etudiant);
+        return "OK : update avec succès";
+    }
+
+    @RequestMapping(value = "deleteTeacher/{id}", method = RequestMethod.DELETE)
+    public String deleteTeacher(@PathVariable("id") String id){
+        enseignantService.deleteById((long)Integer.parseInt(id));
         return "OK : supression avec succès";
     }
 }
