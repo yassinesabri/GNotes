@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
         }else{
           if(account.privilege == "STUDENT"){
-            this.router.navigate(['student']);
+            this.router.navigate(['etudiant']);
           }
           else if(account.privilege == "TEACHER"){
             this.router.navigate([]);

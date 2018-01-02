@@ -10,7 +10,7 @@ export const routes: Routes = [
   {path: '', pathMatch : 'full', redirectTo: 'login'},
   {path: 'adminImport', component: ImportAdminComponent},
   {path: 'login' , component : LoginComponent},
-  {path: 'student' , component : EtudiantComponent}
+  {path: 'etudiant' , component : EtudiantComponent},
   {path: 'students' , component : StudentsComponent},
   {path: 'createStudent' , component : CreateStudentComponent},
   {path: 'updateStudents' , component : UpdateStudentsComponent}
