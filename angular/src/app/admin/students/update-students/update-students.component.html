@@ -29,17 +29,22 @@
               <th>CNE</th>
               <th>CIN</th>
               <th>Date de naissance</th>
+              <th>Action</th>
             </tr>
             </thead>
             <tbody>
               <ng-container *ngIf="students">
-                <tr class="odd gradeX" *ngFor="let student of students" (dblclick)="onSelectStudent($event, student.numero)">
+                <tr class="odd gradeX" *ngFor="let student of students">
                   <td>{{student.numero}}</td>
                   <td>{{student.nom}}</td>
                   <td>{{student.prenom}}</td>
                   <td>{{student.cne}}</td>
                   <td>{{student.cin}}</td>
                   <td>{{student.dateDeNaissance}}</td>
+                  <td>
+                    <button class="btn btn-success" (click)="onSelectStudent($event, student.numero)">Modifier</button>
+                    <button class="btn btn-danger" (click)="deleteStudent($event, student.id)">Supprimer</button>
+                  </td>
                 </tr>
               </ng-container>
             </tbody>

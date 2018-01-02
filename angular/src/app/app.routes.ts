@@ -5,6 +5,7 @@ import {StudentsComponent} from "./admin/students/students.component";
 import {CreateStudentComponent} from "./admin/students/create-student/create-student.component";
 import {UpdateStudentsComponent} from "./admin/students/update-students/update-students.component";
 import {EtudiantComponent} from "./etudiant/etudiant.component";
+import {UpdateStudentComponent} from "./admin/students/update-student/update-student.component";
 
 export const routes: Routes = [
   {path: '', pathMatch : 'full', redirectTo: 'login'},
@@ -13,6 +14,7 @@ export const routes: Routes = [
   {path: 'etudiant' , component : EtudiantComponent},
   {path: 'students' , component : StudentsComponent},
   {path: 'createStudent' , component : CreateStudentComponent},
+  {path: 'updateStudent/:studentNumber' , component : UpdateStudentComponent},
   {path: 'updateStudents' , component : UpdateStudentsComponent}
 ];
 

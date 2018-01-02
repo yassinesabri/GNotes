@@ -1,0 +1,117 @@
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header" style="color: #0d6aad">Modifier un compte étudiant</h1>
+    </div>
+    <div class="col-lg-6">
+      <form role="form" (ngSubmit)="updateStudent()" #studentForm="ngForm" *ngIf="student">
+        <div class="form-group"
+             [ngClass]="{
+                  'has-success' : Nom.valid && (Nom.dirty || Nom.touched),
+                  'has-error' : Nom.invalid && (Nom.dirty || Nom.touched)
+             }">
+          <label>Nom</label>
+          <input class="form-control" name="Nom" [(ngModel)]="student.nom" required #Nom="ngModel">
+          <p class="help-block" *ngIf="Nom.errors && Nom.errors.required && (Nom.dirty || Nom.touched) ">Champs obligatoire</p>
+        </div>
+
+        <div class="form-group"
+             [ngClass]="{
+                  'has-success' : Prenom.valid && (Prenom.dirty || Prenom.touched),
+                  'has-error' : Prenom.invalid && (Prenom.dirty || Prenom.touched)
+             }">
+          <label>Prenom</label>
+          <input class="form-control" name="Prenom" [(ngModel)]="student.prenom" required #Prenom="ngModel">
+          <p class="help-block" *ngIf="Prenom.errors && Prenom.errors.required && (Prenom.dirty || Prenom.touched) ">Champs obligatoire</p>
+        </div>
+
+        <div class="form-group"
+             [ngClass]="{
+                  'has-success' : DatedeNaissance.valid && (DatedeNaissance.dirty || DatedeNaissance.touched),
+                  'has-error' : DatedeNaissance.invalid && (DatedeNaissance.dirty || DatedeNaissance.touched)
+             }">
+          <label>Date de Naissance</label>
+          <input class="form-control" placeholder="yyyy-MM-dd" name="DatedeNaissance" [(ngModel)]="student.dateDeNaissance" required #DatedeNaissance="ngModel">
+          <p class="help-block">Example : 1994-06-20.</p>
+          <p class="help-block" *ngIf="DatedeNaissance.errors && DatedeNaissance.errors.required && (DatedeNaissance.dirty || DatedeNaissance.touched) ">Champs obligatoire</p>
+        </div>
+
+        <div class="form-group"
+             [ngClass]="{
+                  'has-success' : Numero.valid && (Numero.dirty || Numero.touched),
+                  'has-error' : Numero.invalid && (Numero.dirty || Numero.touched)
+             }">
+          <label>Numero</label>
+          <input class="form-control" name="Numero" [(ngModel)]="student.numero" required pattern="[0-9]*" #Numero="ngModel">
+          <p class="help-block" *ngIf="Numero.errors && Numero.errors.required && (Numero.dirty || Numero.touched) ">Champs obligatoire</p>
+          <p class="help-block" *ngIf="Numero.errors && Numero.errors.pattern && (Numero.dirty || Numero.touched)">Numero doit contenir que des numeros</p>
+        </div>
+
+        <div class="form-group"
+             [ngClass]="{
+                  'has-success' : CNE.valid && (CNE.dirty || CNE.touched),
+                  'has-error' : CNE.invalid && (CNE.dirty || CNE.touched)
+             }">
+          <label>CNE</label>
+          <input class="form-control" name="CNE" [(ngModel)]="student.cne" required pattern="[0-9]*" #CNE="ngModel">
+          <p class="help-block" *ngIf="CNE.errors && CNE.errors.required && (CNE.dirty || CNE.touched) ">Champs obligatoire</p>
+          <p class="help-block" *ngIf="CNE.errors && CNE.errors.pattern && (CNE.dirty || CNE.touched)">CNE doit contenir que des numeros</p>
+        </div>
+
+        <div class="form-group"
+             [ngClass]="{
+                  'has-success' : CIN.valid && (CIN.dirty || CIN.touched),
+                  'has-error' : CIN.invalid && (CIN.dirty || CIN.touched)
+             }">
+          <label>CIN</label>
+          <input class="form-control" name="CIN" [(ngModel)]="student.cin" required #CIN="ngModel">
+          <p class="help-block" *ngIf="CIN.errors && CIN.errors.required && (CIN.dirty || CIN.touched) ">Champs obligatoire</p>
+        </div>
+
+        <div class="form-group"
+             [ngClass]="{
+                  'has-success' : adresse.valid && (adresse.dirty || adresse.touched),
+                  'has-error' : adresse.invalid && (adresse.dirty || adresse.touched)
+             }">
+          <label>Adresse</label>
+          <input class="form-control" name="adresse" [(ngModel)]="student.adresse" #adresse="ngModel">
+        </div>
+
+        <div class="form-group"
+             [ngClass]="{
+                  'has-success' : codePostale.valid && (codePostale.dirty || codePostale.touched),
+                  'has-error' : codePostale.invalid && (codePostale.dirty || codePostale.touched)
+             }">
+          <label>Code postale</label>
+          <input class="form-control" name="codePostale" [(ngModel)]="student.codePostale" pattern="[0-9]*" #codePostale="ngModel">
+          <p class="help-block" *ngIf="codePostale.errors && codePostale.errors.pattern && (codePostale.dirty || codePostale.touched)">code postale doit contenir que des numeros</p>
+        </div>
+
+        <div class="form-group"
+             [ngClass]="{
+                  'has-success' : email.valid && (email.dirty || email.touched),
+                  'has-error' : email.invalid && (email.dirty || email.touched)
+             }">
+          <label>Email</label>
+          <input class="form-control" type="email" name="email" [(ngModel)]="student.email" pattern="^[^@]*@[^@]*$" #email="ngModel">
+          <p class="help-block">Example : example@example.com</p>
+          <p class="help-block" *ngIf="email.errors && email.errors.pattern && (email.dirty || email.touched) ">Email invalid</p>
+        </div>
+
+        <div class="form-group"
+             [ngClass]="{
+                  'has-success' : telephone.valid && (telephone.dirty || telephone.touched),
+                  'has-error' : telephone.invalid && (telephone.dirty || telephone.touched)
+             }">
+          <label>Telephone</label>
+          <input class="form-control" name="telephone" [(ngModel)]="student.telephone" pattern="^06[0-9]{8}" #telephone="ngModel">
+          <p class="help-block">Example : 0617484296</p>
+          <p class="help-block" *ngIf="telephone.errors && telephone.errors.required && (telephone.dirty || telephone.touched) ">Champs obligatoire</p>
+          <p class="help-block" *ngIf="telephone.errors && telephone.errors.pattern && (telephone.dirty || telephone.touched) ">Telephone invalid</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="studentForm.invalid">Update</button>
+      </form>
+    </div>
+  </div>
+</div>
