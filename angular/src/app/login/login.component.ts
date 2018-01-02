@@ -3,6 +3,9 @@ import {Router} from "@angular/router";
 import {LoginService} from "./login.service";
 import {LoginAccount} from "../utils/account";
 
+declare var jQuery:any;
+let $ = jQuery;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,7 +28,7 @@ export class LoginComponent implements OnInit {
         this.authAccount = account;
         console.log(account);
         if(account == null){
-
+          this.notifyMessage("Login erreur : identifients incorrects");
         }else{
           if(account.privilege == "STUDENT"){
             this.router.navigate(['etudiant']);
@@ -53,5 +56,21 @@ export class LoginComponent implements OnInit {
       this.account.cin = null;
       this.account.cne = null;
     }
+  }
+
+  notifyMessage(message:string){
+      $.notify(message, {
+        type: 'danger',
+        delay : 2000,
+        newest_on_top: true,
+        placement: {
+          from: "top",
+          align: "center"
+        },
+        animate: {
+          enter: 'animated fadeInDown',
+          exit: 'animated fadeOutUp'
+        }
+      });
   }
 }

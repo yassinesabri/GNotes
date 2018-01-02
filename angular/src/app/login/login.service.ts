@@ -17,9 +17,9 @@ export class LoginService extends Subject<any>{
     headers.append('Content-Type', 'application/json');
     return this.http.post(url,account,headers)
       .map(response => {
-          console.log(response);
-          if(response){
-            this.account = response.json();
+          let res  = response.json();
+          if(res.privilege){
+            this.account = res;
           }else{
             this.account = null;
           }

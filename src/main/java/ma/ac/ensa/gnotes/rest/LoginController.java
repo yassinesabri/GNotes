@@ -26,9 +26,9 @@ public class LoginController {
     @RequestMapping("login")
     Object authenticate(@RequestBody LoginAccount account){
         if(account.isStudent){
-            return etudiantService.findByCneAndCin(Integer.parseInt(account.cne), account.cin);
+            return etudiantService.findByCneAndCin(Integer.parseInt(account.cne), account.cin) != null ? etudiantService.findByCneAndCin(Integer.parseInt(account.cne), account.cin) : "{}";
         }else{
-            return enseignantService.findByNumeroAndPassword(account.numero, account.password);
+            return enseignantService.findByNumeroAndPassword(account.numero, account.password) != null ? enseignantService.findByNumeroAndPassword(account.numero, account.password) : "{}";
         }
     }
 }
