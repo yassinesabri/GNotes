@@ -22,7 +22,12 @@ export class LoginService{
       .map(response => {
           let res  = response.json();
           if(res.privilege){
-            this.account = res;
+            this.account = {
+              "numero" : res.nuemro,
+              "nom" : res.nom,
+              "prenom" : res.prenom,
+              "privilege" : res.privilege
+            };
             localStorage.setItem("loginAccount",JSON.stringify(this.account));
           }else{
             this.account = null;
