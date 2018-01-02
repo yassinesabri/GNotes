@@ -25,7 +25,7 @@ public class EtudiantController {
 
     @RequestMapping(value = "/etudiant",  method = RequestMethod.GET, produces = "application/json")
     public Etudiant getEtudiant(){
-        Etudiant etudiant=etudiantService.findByNumero((long)1500016);
+        Etudiant etudiant=etudiantService.findByNumero("1500016");
         etudiant.setEtudiantModuleList(null);
 //        Etudiant etudiantToSend=new Etudiant();
 //        etudiantToSend.setId(etudiant.getId());
