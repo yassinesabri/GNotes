@@ -195,4 +195,23 @@ public class AdminController {
             return etudiantService.findByNumeroContains(numero);
         }
     }
+
+    @RequestMapping(value = "fetchStudent/{numero}", method = RequestMethod.GET)
+    public Etudiant fetchStudent(@PathVariable("numero") String numero){
+        return etudiantService.findByNumero(numero);
+    }
+
+    @RequestMapping(value = "updateStudent", method = RequestMethod.PUT)
+    public String updateStudent(@RequestBody Etudiant etudiant){
+        Etudiant old = etudiantService.findById(etudiant.getId());
+        etudiant.setEtudiantModuleList(old.getEtudiantModuleList());
+        etudiantService.save(etudiant);
+        return "OK : update avec succès";
+    }
+
+    @RequestMapping(value = "deleteStudent/{id}", method = RequestMethod.DELETE)
+    public String deleteStudent(@PathVariable("id") String id){
+        etudiantService.deleteById((long)Integer.parseInt(id));
+        return "OK : supression avec succès";
+    }
 }

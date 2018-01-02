@@ -13,4 +13,5 @@ public interface EtudiantRepo extends JpaRepository<Etudiant,Long>{
     public Etudiant save(Etudiant etudiant);
     public List<Etudiant> findAll();
     public List<Etudiant> findByNumeroContains(String numero);
+    public Etudiant findById(long id);
 }

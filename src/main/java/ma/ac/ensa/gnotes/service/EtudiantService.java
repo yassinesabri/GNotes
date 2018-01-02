@@ -16,7 +16,11 @@ public class EtudiantService {
     private EtudiantRepo etudiantRepo;
 
     public Etudiant findByNumero(String numero){
-        return etudiantRepo.findByNumero(numero);
+        Etudiant etudiant = etudiantRepo.findByNumero(numero);
+        if(etudiant != null){
+            etudiant.setEtudiantModuleList(null);
+        }
+        return etudiant;
     }
 
     public Etudiant findByCneAndCin(int cne, String cin){
@@ -47,5 +51,13 @@ public class EtudiantService {
             etudiant.setEtudiantModuleList(null);
         }
         return etudiants;
+    }
+
+    public Etudiant findById(long id){
+        return etudiantRepo.findById(id);
+    }
+
+    public void deleteById(long id){
+        etudiantRepo.deleteById(id);
     }
 }
