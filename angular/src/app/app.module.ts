@@ -16,6 +16,10 @@ import {CreateStudentComponent} from './admin/students/create-student/create-stu
 import {UpdateStudentsComponent} from './admin/students/update-students/update-students.component';
 import {EtudiantService} from "./etudiant/etudiant.service";
 import {UpdateStudentComponent} from './admin/students/update-student/update-student.component';
+import { TeachersComponent } from './admin/teachers/teachers.component';
+import { CreateTeacherComponent } from './admin/teachers/create-teacher/create-teacher.component';
+import { UpdateTeachersComponent } from './admin/teachers/update-teachers/update-teachers.component';
+import { UpdateTeacherComponent } from './admin/teachers/update-teacher/update-teacher.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +32,10 @@ import {UpdateStudentComponent} from './admin/students/update-student/update-stu
     UpdateStudentsComponent,
     EtudiantComponent,
     UpdateStudentComponent,
+    TeachersComponent,
+    CreateTeacherComponent,
+    UpdateTeachersComponent,
+    UpdateTeacherComponent,
   ],
   imports: [
     BrowserModule,
