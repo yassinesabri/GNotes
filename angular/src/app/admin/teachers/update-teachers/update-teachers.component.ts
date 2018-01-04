@@ -39,6 +39,7 @@ export class UpdateTeachersComponent implements OnInit {
         this.teachers = teachers;
       });
   }
+
   onSelectTeacher(event:any, numero:string){
     event.preventDefault();
     this.router.navigate(["/updateTeacher",numero]);

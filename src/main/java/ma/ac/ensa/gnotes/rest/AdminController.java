@@ -4,8 +4,10 @@ import ma.ac.ensa.gnotes.model.Enseignant;
 import ma.ac.ensa.gnotes.model.Etudiant;
 import ma.ac.ensa.gnotes.model.EtudiantModule;
 import ma.ac.ensa.gnotes.model.Module;
-import ma.ac.ensa.gnotes.model.dto.EtudiantDTO;
-import ma.ac.ensa.gnotes.model.mapper.EtudiantDtoTOEntityMapper;
+import ma.ac.ensa.gnotes.model.vo.EnseignantVO;
+import ma.ac.ensa.gnotes.model.vo.EtudiantVO;
+import ma.ac.ensa.gnotes.model.mapper.EtudiantVoTOEntityMapper;
+import ma.ac.ensa.gnotes.model.vo.ModuleVO;
 import ma.ac.ensa.gnotes.service.EnseignantService;
 import ma.ac.ensa.gnotes.service.EtudiantModuleService;
 import ma.ac.ensa.gnotes.service.EtudiantService;
@@ -15,16 +17,14 @@ import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "/api")
@@ -42,6 +42,9 @@ public class AdminController {
 
     @Autowired
     private EnseignantService enseignantService;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @RequestMapping(value = "importFile",method = RequestMethod.POST, consumes = "multipart/form-data")
     @ResponseBody
@@ -176,8 +179,8 @@ public class AdminController {
     }
 
     @RequestMapping(value = "createStudent", method = RequestMethod.POST)
-    public String createStudent(@RequestBody EtudiantDTO etudiant){
-        EtudiantDtoTOEntityMapper mapper = new EtudiantDtoTOEntityMapper();
+    public String createStudent(@RequestBody EtudiantVO etudiant){
+        EtudiantVoTOEntityMapper mapper = new EtudiantVoTOEntityMapper();
         Etudiant etudiant1 = mapper.getModelMapper().map(etudiant, Etudiant.class);
         //Mapping error
         if(etudiant1.getDateDeNaissance() == null){
@@ -232,7 +235,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "fetchTeachers/{numero}", method = RequestMethod.GET)
-    public List<Enseignant> fetchTeachers(@PathVariable("numero") String numero){
+    public List<EnseignantVO> fetchTeachers(@PathVariable("numero") String numero){
         if(numero.equals("nothing")){
             return enseignantService.findAll();
         }else{
@@ -241,15 +244,24 @@ public class AdminController {
     }
 
     @RequestMapping(value = "fetchTeacher/{numero}", method = RequestMethod.GET)
-    public Enseignant fetchTeacher(@PathVariable("numero") String numero){
-        return enseignantService.findByNumero(numero);
+    public EnseignantVO fetchTeacher(@PathVariable("numero") String numero){
+        return enseignantService.findByNumeroVO(numero);
     }
 
     @RequestMapping(value = "updateTeacher", method = RequestMethod.PUT)
-    public String updateTeacher(@RequestBody Etudiant etudiant){
-        Etudiant old = etudiantService.findById(etudiant.getId());
-        etudiant.setEtudiantModuleList(old.getEtudiantModuleList());
-        etudiantService.save(etudiant);
+    public String updateTeacher(@RequestBody EnseignantVO enseignantVO){
+        Enseignant enseignant = modelMapper.map(enseignantVO, Enseignant.class);
+        System.out.println(enseignant);
+        enseignantService.save(enseignant);
+        return "OK : update avec succès";
+    }
+
+    @RequestMapping(value = "freeModules", method = RequestMethod.PUT)
+    public String freeModules(@RequestBody List<ModuleVO> moduleVOList){
+        for(ModuleVO moduleVO:moduleVOList){
+            Module module = modelMapper.map(moduleVO, Module.class);
+            moduleService.save(module);
+        }
         return "OK : update avec succès";
     }
 
@@ -257,5 +269,10 @@ public class AdminController {
     public String deleteTeacher(@PathVariable("id") String id){
         enseignantService.deleteById((long)Integer.parseInt(id));
         return "OK : supression avec succès";
+    }
+
+    @RequestMapping(value = "fetchModules", method = RequestMethod.GET)
+    public List<ModuleVO> fetchModules(){
+        return moduleService.findNotByEnseignant_Id();
     }
 }
