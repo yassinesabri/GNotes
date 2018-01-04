@@ -1,8 +1,8 @@
-package ma.ac.ensa.gnotes.model.dto;
+package ma.ac.ensa.gnotes.model.vo;
 
 import ma.ac.ensa.gnotes.utils.Privilege;
 
-public class EtudiantDTO {
+public class EtudiantVO {
     private String numero;
 
     private String nom;
@@ -17,7 +17,7 @@ public class EtudiantDTO {
 
     private String dateDeNaissance;
 
-    public EtudiantDTO(String numero, String nom, String prenom, String cin, int cne, Privilege privilege, String dateDeNaissance) {
+    public EtudiantVO(String numero, String nom, String prenom, String cin, int cne, Privilege privilege, String dateDeNaissance) {
         this.numero = numero;
         this.nom = nom;
         this.prenom = prenom;
@@ -27,7 +27,7 @@ public class EtudiantDTO {
         this.dateDeNaissance = dateDeNaissance;
     }
 
-    public EtudiantDTO() {
+    public EtudiantVO() {
     }
 
     public String getNumero() {

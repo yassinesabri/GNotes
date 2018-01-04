@@ -9,9 +9,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class EtudiantDtoTOEntityMapper{
+public class EtudiantVoTOEntityMapper {
     private ModelMapper modelMapper;
-    public EtudiantDtoTOEntityMapper(){
+    public EtudiantVoTOEntityMapper(){
         this.modelMapper = new ModelMapper();
         Converter<String, Date> stringToDate = new AbstractConverter<String, Date>() {
             protected Date convert(String source) {

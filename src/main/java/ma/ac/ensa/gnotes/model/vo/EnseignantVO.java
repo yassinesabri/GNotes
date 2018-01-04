@@ -1,18 +1,12 @@
-package ma.ac.ensa.gnotes.model;
+package ma.ac.ensa.gnotes.model.vo;
 
 import ma.ac.ensa.gnotes.utils.Privilege;
 
-import javax.persistence.*;
 import java.util.List;
 
-@Entity
-public class Enseignant {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class EnseignantVO {
     private long id;
 
-    @Column(unique = true)
     private String numero;
 
     private String nom;
@@ -21,13 +15,11 @@ public class Enseignant {
 
     private String password;
 
-    @Enumerated(value = EnumType.STRING)
     private Privilege privilege;
 
-    @OneToMany(mappedBy = "enseignant", fetch = FetchType.EAGER, cascade={CascadeType.ALL})
-    private List<Module> modules;
+    private List<ModuleVO> modules;
 
-    public Enseignant() {
+    public EnseignantVO() {
     }
 
     public long getId() {
@@ -62,14 +54,6 @@ public class Enseignant {
         this.prenom = prenom;
     }
 
-    public List<Module> getModules() {
-        return modules;
-    }
-
-    public void setModules(List<Module> modules) {
-        this.modules = modules;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -86,15 +70,24 @@ public class Enseignant {
         this.privilege = privilege;
     }
 
+    public List<ModuleVO> getModules() {
+        return modules;
+    }
+
+    public void setModules(List<ModuleVO> modules) {
+        this.modules = modules;
+    }
+
     @Override
     public String toString() {
-        return "Enseignant{" +
+        return "EnseignantVO{" +
                 "id=" + id +
-                ", numero=" + numero +
+                ", numero='" + numero + '\'' +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
-                ", modules=" + modules +
+                ", password='" + password + '\'' +
                 ", privilege=" + privilege +
+                ", modules=" + modules +
                 '}';
     }
 }
