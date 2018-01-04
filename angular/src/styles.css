@@ -18,3 +18,21 @@
   left: 50%;
   top: 50%;
 }
+/*side bar style
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus,
+.sidebar ul li a:hover, .sidebar ul li a:focus,
+.sidebar ul li a.active {
+  color: #fff;
+  background-color:#49a972;
+  border-color:#377BCF;
+}
+*/
+
+.page-header{
+  color:#0d6aad;
+}
+
+table.table th {
+  background-color: #80c17e;
+  color:#fff;
+}

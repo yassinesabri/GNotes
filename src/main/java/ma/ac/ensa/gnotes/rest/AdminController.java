@@ -124,7 +124,7 @@ public class AdminController {
                     else if(n_cells == mark_position){
                         //PcR Abs
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_STRING){
-                            if(cell.getStringCellValue().equals("PcR") || cell.getStringCellValue().equals("Abs")){
+                            if(cell.getStringCellValue().equals("PrC") || cell.getStringCellValue().equals("Abs")){
                                 comment = cell.getStringCellValue();
                                 isComment = true;
                             }else{

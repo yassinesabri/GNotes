@@ -3,8 +3,8 @@
     <div class="col-md-4 col-md-offset-4">
       <div class="login-panel panel panel-default">
 
-        <div class="panel-heading">
-          <h3 class="panel-title">Connectez vous s'il vous plait.</h3>
+        <div class="panel-heading" style="background-color: #286090">
+          <h3 class="panel-title" style="color: white">Connectez vous s'il vous plait.</h3>
         </div>
 
         <div class="panel-body">
@@ -12,12 +12,14 @@
             <fieldset>
               <div class="radio">
                 <label>
-                  <input type="radio" name="accountType" id="student" checked (change)="onRadioChange()">Etudiant
+                  <input type="radio" name="accountType" id="student" checked (change)="onRadioChange()">
+                  <span>Etudiant</span>
                 </label>
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" name="accountType" id="teacher" (change)="onRadioChange()">Prof/Admin
+                  <input type="radio" name="accountType" id="teacher" (change)="onRadioChange()">
+                  <span>Prof/Admin</span>
                 </label>
               </div>
               <div class="form-group" *ngIf="account.isStudent">
@@ -36,7 +38,7 @@
                 <input class="form-control" placeholder="Mot de passe" name="mpd" type="password" [(ngModel)]="account.password"
                        required>
               </div>
-              <button class="btn btn-lg btn-custom btn-block" (click)="authenticate()">Connexion</button>
+              <button class="btn btn-lg btn-primary btn-block" (click)="authenticate()">Connexion</button>
             </fieldset>
           </form>
           <!--<div class="alert alert-danger" >error</div>-->
