@@ -8,6 +8,7 @@ import {isNull} from "util";
 @Injectable()
 export class LoginService{
   public account : any; //student or teacher object from server
+  public loginAccount:any;
   constructor(private http:Http){
     let login = JSON.parse(localStorage.getItem("loginAccount"));
     if(login){
@@ -22,13 +23,14 @@ export class LoginService{
       .map(response => {
           let res  = response.json();
           if(res.privilege){
-            this.account = {
+            this.account =  res;
+            this.loginAccount = {
               "numero" : res.nuemro,
               "nom" : res.nom,
               "prenom" : res.prenom,
               "privilege" : res.privilege
             };
-            localStorage.setItem("loginAccount",JSON.stringify(this.account));
+            localStorage.setItem("loginAccount",JSON.stringify(this.loginAccount));
           }else{
             this.account = null;
           }
