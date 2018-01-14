@@ -23,6 +23,7 @@
           <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-user">
+          <li *ngIf="loginAccount.privilege=='STUDENT'"><a routerLink="/etudiant" routerLinkActive="true" style="cursor: pointer"><i class="fa fa-user fa-fw"></i>Profile</a></li>
           <li><a (click)="logout()" style="cursor: pointer"><i class="fa fa-sign-out fa-fw"></i>Deconnexion</a>
           </li>
         </ul>
@@ -62,7 +63,12 @@
           </ng-container>
           <!-- Menu for Student-->
           <ng-container *ngIf="loginAccount && loginAccount.privilege=='STUDENT'">
-
+            <li *ngFor="let cycle of cycles">
+              <a [routerLink]="['/releveDeNote/cycle',{'cycle': cycle,'filiere': etudiant.filiere }]" routerLinkActive="true">
+                <i class="fa fa-cloud-download"></i>
+                <span class="menu-text">{{cycle}}</span>
+              </a>
+            </li>
           </ng-container>
         </ul>
       </div>

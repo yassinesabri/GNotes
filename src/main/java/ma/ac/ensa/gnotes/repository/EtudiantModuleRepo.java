@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EtudiantModuleRepo extends JpaRepository<EtudiantModule,Long>{
     public EtudiantModule findByEtudiantAndModuleAndAnnee(Etudiant etudiant, Module module, String annee);
+    public EtudiantModule findByEtudiantAndModule(Etudiant etudiant, Module module);
 }

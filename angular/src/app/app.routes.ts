@@ -4,12 +4,13 @@ import {LoginComponent} from "./login/login.component";
 import {StudentsComponent} from "./admin/students/students.component";
 import {CreateStudentComponent} from "./admin/students/create-student/create-student.component";
 import {UpdateStudentsComponent} from "./admin/students/update-students/update-students.component";
-import {EtudiantComponent} from "./etudiant/etudiant.component";
+import {EtudiantComponent} from "./etudiant/profile/etudiant.component";
 import {UpdateStudentComponent} from "./admin/students/update-student/update-student.component";
 import {TeachersComponent} from "./admin/teachers/teachers.component";
 import {CreateTeacherComponent} from "./admin/teachers/create-teacher/create-teacher.component";
 import {UpdateTeachersComponent} from "./admin/teachers/update-teachers/update-teachers.component";
 import {UpdateTeacherComponent} from "./admin/teachers/update-teacher/update-teacher.component";
+import {ReleveDeNoteComponent} from "./etudiant/releve-de-note/releve-de-note.component";
 
 export const routes: Routes = [
   {path: '', pathMatch : 'full', redirectTo: 'login'},
@@ -23,6 +24,7 @@ export const routes: Routes = [
   {path: 'teachers' , component : TeachersComponent},
   {path: 'createTeacher' , component : CreateTeacherComponent},
   {path: 'updateTeacher/:teacherNumber' , component : UpdateTeacherComponent},
-  {path: 'updateTeachers' , component : UpdateTeachersComponent}
+  {path: 'updateTeachers' , component : UpdateTeachersComponent},
+  {path: 'releveDeNote/:cycle' , component : ReleveDeNoteComponent}
 ];
 

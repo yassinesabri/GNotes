@@ -211,6 +211,7 @@ public class AdminController {
 
     @RequestMapping(value = "updateStudent", method = RequestMethod.PUT)
     public String updateStudent(@RequestBody Etudiant etudiant){
+        System.out.println("Update DONE !!");
         Etudiant old = etudiantService.findById(etudiant.getId());
         etudiant.setEtudiantModuleList(old.getEtudiantModuleList());
         etudiantService.save(etudiant);
