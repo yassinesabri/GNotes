@@ -15,8 +15,20 @@ export class LoginComponent implements OnInit {
   account : LoginAccount;
   authAccount : any;
   constructor(private router:Router,public loginService:LoginService) {
-    this.account = new LoginAccount();
-    this.account.isStudent = true;
+    let login = JSON.parse(localStorage.getItem("loginAccount"));;
+    if(login) {
+      if (login.privilege == "STUDENT") {
+        this.router.navigate(['etudiant']);
+      }
+      else if (login.privilege == "TEACHER") {
+        this.router.navigate([]);
+      }
+      else if (login.privilege == "ADMIN") {
+        this.router.navigate(['adminImport']);
+      }
+    }
+      this.account = new LoginAccount();
+      this.account.isStudent = true;
   }
   ngOnInit(){
 
