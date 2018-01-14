@@ -21,6 +21,7 @@ import { CreateTeacherComponent } from './admin/teachers/create-teacher/create-t
 import { UpdateTeachersComponent } from './admin/teachers/update-teachers/update-teachers.component';
 import { UpdateTeacherComponent } from './admin/teachers/update-teacher/update-teacher.component';
 import { ReleveDeNoteComponent } from './etudiant/releve-de-note/releve-de-note.component';
+import {TeacherComponent} from "./teacher/teacher.component";
 // import {Tabs} from './etudiant/tab/tabs';
 // import {Tab} from './etudiant/tab/tab';
 
@@ -40,8 +41,7 @@ import { ReleveDeNoteComponent } from './etudiant/releve-de-note/releve-de-note.
     UpdateTeachersComponent,
     UpdateTeacherComponent,
     ReleveDeNoteComponent,
-    // Tabs,
-    // Tab
+    TeacherComponent
   ],
   imports: [
     BrowserModule,
