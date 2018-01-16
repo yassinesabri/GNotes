@@ -11,6 +11,8 @@ import {CreateTeacherComponent} from "./admin/teachers/create-teacher/create-tea
 import {UpdateTeachersComponent} from "./admin/teachers/update-teachers/update-teachers.component";
 import {UpdateTeacherComponent} from "./admin/teachers/update-teacher/update-teacher.component";
 import {ReleveDeNoteComponent} from "./etudiant/releve-de-note/releve-de-note.component";
+import {TeacherComponent} from "./teacher/modules/teacher.component";
+import {ModuleStudentsComponent} from "./teacher/Students/modulestudents.component";
 
 export const routes: Routes = [
   {path: '', pathMatch : 'full', redirectTo: 'login'},
@@ -25,6 +27,8 @@ export const routes: Routes = [
   {path: 'createTeacher' , component : CreateTeacherComponent},
   {path: 'updateTeacher/:teacherNumber' , component : UpdateTeacherComponent},
   {path: 'updateTeachers' , component : UpdateTeachersComponent},
-  {path: 'releveDeNote/:cycle' , component : ReleveDeNoteComponent}
+  {path: 'releveDeNote/:cycle' , component : ReleveDeNoteComponent},
+  {path: 'teacher', component : TeacherComponent},
+  {path: 'moduleStudents' , component: ModuleStudentsComponent}
 ];
 

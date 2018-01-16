@@ -21,10 +21,8 @@ import { CreateTeacherComponent } from './admin/teachers/create-teacher/create-t
 import { UpdateTeachersComponent } from './admin/teachers/update-teachers/update-teachers.component';
 import { UpdateTeacherComponent } from './admin/teachers/update-teacher/update-teacher.component';
 import { ReleveDeNoteComponent } from './etudiant/releve-de-note/releve-de-note.component';
-import {TeacherComponent} from "./teacher/teacher.component";
-// import {Tabs} from './etudiant/tab/tabs';
-// import {Tab} from './etudiant/tab/tab';
-
+import {TeacherComponent} from "./teacher/modules/teacher.component";
+import {ModuleStudentsComponent} from "./teacher/Students/modulestudents.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +39,8 @@ import {TeacherComponent} from "./teacher/teacher.component";
     UpdateTeachersComponent,
     UpdateTeacherComponent,
     ReleveDeNoteComponent,
-    TeacherComponent
+    TeacherComponent,
+    ModuleStudentsComponent
   ],
   imports: [
     BrowserModule,

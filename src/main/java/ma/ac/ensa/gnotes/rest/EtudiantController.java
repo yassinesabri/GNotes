@@ -44,7 +44,7 @@ public class EtudiantController {
         System.out.println(cycle);
         if(filiere.equals("none")) {
             listModules=this.moduleService.findByCycle(cycle);
-            System.out.println(listModules);
+//            System.out.println(listModules);
         }else{
             listModules=this.moduleService.findByCycleAndFiliere(cycle,filiere);
         }
@@ -55,7 +55,7 @@ public class EtudiantController {
             ModuleEtudiantVO et=new ModuleEtudiantVO();
             listModules.get(i).setEtudiantModuleList(null);
             etudiantModules.add(this.etudiantModuleService.findByEtudiantAndModule(etudiant,listModules.get(i)));
-            System.out.println(etudiantModules.get(i));
+//            System.out.println(etudiantModules.get(i));
             if(etudiantModules.get(i)!=null){
                 et.setId(etudiantModules.get(i).getId());
                 et.setNote(etudiantModules.get(i).getNote());
@@ -63,6 +63,7 @@ public class EtudiantController {
                 et.setNomModule(etudiantModules.get(i).getModule().getNom());
                 et.setSemestre(etudiantModules.get(i).getModule().getSemestre());
             }
+            System.out.println(et);
             modulesEtudiantVO.add(et);
         }
         EtudiantModuleVO etudiantModuleVO=new EtudiantModuleVO();

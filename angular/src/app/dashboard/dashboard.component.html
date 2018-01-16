@@ -59,7 +59,12 @@
           </ng-container>
           <!-- Menu for Teacher-->
           <ng-container *ngIf="loginAccount && loginAccount.privilege=='TEACHER'">
-
+            <li >
+              <a routerLink="/teacher" routerLinkActive="true">
+                <i class="fa fa-cloud-download"></i>
+                <span class="menu-text">Gestion des Modules</span>
+              </a>
+            </li>
           </ng-container>
           <!-- Menu for Student-->
           <ng-container *ngIf="loginAccount && loginAccount.privilege=='STUDENT'">

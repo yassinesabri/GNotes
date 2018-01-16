@@ -26,14 +26,14 @@ export class EtudiantComponent implements OnInit {
   }
   nom:string="test";
   ngOnInit() {
-    // console.log("test"+this._loginService.account.nom)
+    // console.log(this._loginService.account)
     this.etudiant=this._loginService.account;
     if(Object.keys(this.etudiant).length<10){
       this.etudiant = JSON.parse(localStorage.getItem('User'));
     }else{
       localStorage.setItem('User', JSON.stringify(this.etudiant));
     }
-    console.log(this.etudiant);
+    // console.logino(this.etudiant);
   }
 
   updateUser(){

@@ -33,6 +33,7 @@ export class ReleveDeNoteComponent implements OnInit {
       let options = new RequestOptions();
       options.headers = headers;
       let fil=this.filiere;
+      console.log(this.cycle);
       if(this.cycle==="CP1" ||this.cycle==="CP2" )
         fil="none";
       this.http.get("/api/fetchStudentModules/"+this.cycle+"/"+fil+"/"+this.etudiant.numero,options)
@@ -80,7 +81,7 @@ export class ReleveDeNoteComponent implements OnInit {
           this.semestre="S9";
         }
         this.filiere = params['filiere'];
-        // console.log(this.cycle);
+        console.log(this.cycle);
         // console.log(this.filiere);
 
         this.fetchModules();
