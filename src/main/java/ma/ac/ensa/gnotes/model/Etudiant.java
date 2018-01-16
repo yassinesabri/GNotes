@@ -30,6 +30,10 @@ public class Etudiant {
 
     private String codePostale;
 
+    private String filiere;
+
+    private String cycle;
+
     private String email;
 
     @Enumerated(value = EnumType.STRING)
@@ -42,6 +46,22 @@ public class Etudiant {
     private List<EtudiantModule> etudiantModuleList;
 
     public Etudiant() {
+    }
+
+    public String getFiliere() {
+        return filiere;
+    }
+
+    public void setFiliere(String filiere) {
+        this.filiere = filiere;
+    }
+
+    public String getCycle() {
+        return cycle;
+    }
+
+    public void setCycle(String cycle) {
+        this.cycle = cycle;
     }
 
     public long getId() {

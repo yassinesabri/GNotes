@@ -17,7 +17,15 @@ public class EtudiantVO {
 
     private String dateDeNaissance;
 
-    public EtudiantVO(String numero, String nom, String prenom, String cin, int cne, Privilege privilege, String dateDeNaissance) {
+    private String adresse;
+
+    private String telephone;
+
+    private String codePostale;
+
+    private String email;
+
+    public EtudiantVO(String numero, String nom, String prenom, String cin, int cne, Privilege privilege, String dateDeNaissance, String adresse, String telephone, String codePostale, String email) {
         this.numero = numero;
         this.nom = nom;
         this.prenom = prenom;
@@ -25,6 +33,42 @@ public class EtudiantVO {
         this.cne = cne;
         this.privilege = privilege;
         this.dateDeNaissance = dateDeNaissance;
+        this.adresse = adresse;
+        this.telephone = telephone;
+        this.codePostale = codePostale;
+        this.email = email;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getCodePostale() {
+        return codePostale;
+    }
+
+    public void setCodePostale(String codePostale) {
+        this.codePostale = codePostale;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public EtudiantVO() {
@@ -88,14 +132,18 @@ public class EtudiantVO {
 
     @Override
     public String toString() {
-        return "EtudiantDTO{" +
-                "numero=" + numero +
+        return "EtudiantVO{" +
+                "numero='" + numero + '\'' +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", cin='" + cin + '\'' +
                 ", cne=" + cne +
                 ", privilege=" + privilege +
                 ", dateDeNaissance='" + dateDeNaissance + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", codePostale='" + codePostale + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

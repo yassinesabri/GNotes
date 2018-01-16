@@ -2,18 +2,20 @@
 
 
 export class Etudiant {
-   _id:number;
-   _cin:string;
-   _cne:number
-   _dateDeNaissance:Date;
-   _nom:string;
-   _numero:number;
-   _prenom:string;
-   _privilege:string;
-  _email:string;
-  _adresse:string;
-  _ZIPcode:string;
-  _phoneNumber:string;
+   id:number;
+   cin:string;
+   cne:number
+   dateDeNaissance:Date;
+   nom:string;
+   numero:number;
+   prenom:string;
+   privilege:string;
+  email:string;
+  adresse:string;
+  codePostale:string;
+  telephone:string;
+  filiere:string;
+  cycle:string;
 
   constructor() {
   }

@@ -38,6 +38,11 @@ public class EtudiantService {
         return etudiantRepo.save(etudiant);
     }
 
+    public Etudiant update(Etudiant etudiant){
+        return etudiantRepo.save(etudiant);
+    }
+
+
     public List<Etudiant> findAll(){
         List<Etudiant> etudiants = etudiantRepo.findAll();
         for(Etudiant etudiant : etudiants){

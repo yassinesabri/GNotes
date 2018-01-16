@@ -1,5 +1,10 @@
 <div id="page-wrapper">
-    <form role="form" id="UserProfile">
+  <div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Mon Profile </h1>
+  </div>
+  <div class="col-lg-5">
+    <form role="form" (ngSubmit)="updateUser()" #UserForm="ngForm" id="UserProfile">
       <fieldset >
         <div class="form-group">
           <label for="number">Number :</label>
@@ -23,27 +28,35 @@
         </div>
         <div class="form-group">
           <label for="email">Email :</label>
-          <input class="form-control" id="email" value="{{etudiant?.email}}"  type="email"  placeholder="Example@email.com" required>
+          <input class="form-control" id="email" [(ngModel)]="etudiant.email" name="email" type="email"  placeholder="Example@email.com" required>
         </div>
         <div class="form-group">
           <label for="birthday">Date Of Birth :</label>
           <input class="form-control" id="birthday" value={{etudiant?.dateDeNaissance}} type="text"  disabled>
         </div>
-
+        <div class="form-group">
+          <label for="phoneNumber">Cycle :</label>
+        </div>
+        <input class="form-control" id="cycle"  type="text"  [(ngModel)]="etudiant.cycle" name="cycle" disabled>
+        <div class="form-group" *ngIf="etudiant.filiere!='none'" >
+          <label for="phoneNumber">Filiere :</label>
+          <input class="form-control" id="filiere"  type="text"  [(ngModel)]="etudiant.filiere" name="filiere" required disabled>
+        </div>
         <div class="form-group">
           <label for="phoneNumber">Phone Number :</label>
-          <input class="form-control" id="phoneNumber"  type="tel"  value="{{etudiant?.telephone}}"  placeholder="+2126-00-00-00-00" pattern="^\+2126-\d{2}-\d{2}-\d{2}-\d{2}$" required>
+          <input class="form-control" id="phoneNumber"  type="tel"  [(ngModel)]="etudiant.telephone" name="telephone" placeholder="0617484296" pattern="[0-9]*" required>
         </div>
         <div class="form-group">
           <label for="adresse">Adresse :</label>
-          <textarea class="form-control"  id="adresse" rows="3" value="{{etudiant?.adresse}}"  required></textarea>
+          <textarea class="form-control"  id="adresse" rows="3" [(ngModel)]="etudiant.adresse" name="adresse" required></textarea>
         </div>
         <div class="form-group">
           <label for="zipCode">ZIP code :</label>
-          <input class="form-control" id="zipCode" minlength="5" maxlength="5"  value="{{etudiant?.codePostale}}"  type="text" required>
+          <input class="form-control" id="zipCode" minlength="5" maxlength="5" [(ngModel)]="etudiant.codePostale" name="codePostale" type="text" required>
         </div>
-        <button type="button" class="btn btn-primary btn-lg btn-block"><i class="fa fa-save"></i> Update</button>
+        <button type="submit" class="btn btn-primary btn-lg btn-block"  ><i class="fa fa-save"></i> Update</button>
       </fieldset>
     </form>
-
+    </div>
+  </div>
 </div>

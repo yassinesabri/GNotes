@@ -15,6 +15,38 @@ export class UpdateStudentComponent implements OnInit {
   studentId:string;
   student:any;
 
+  notifyMessage(message:string){
+    if(message.indexOf("OK") !== -1){
+      $.notify(message, {
+        type: 'success',
+        delay : 2000,
+        newest_on_top: true,
+        placement: {
+          from: "top",
+          align: "center"
+        },
+        animate: {
+          enter: 'animated fadeInDown',
+          exit: 'animated fadeOutUp'
+        }
+      });
+    }else{
+      $.notify(message, {
+        type: 'danger',
+        delay : 2000,
+        newest_on_top: true,
+        placement: {
+          from: "top",
+          align: "center"
+        },
+        animate: {
+          enter: 'animated fadeInDown',
+          exit: 'animated fadeOutUp'
+        }
+      });
+    }
+  }
+
   constructor(private activeRouter:ActivatedRoute, private http:Http, private router: Router, private loginService:LoginService) {
     //not connected
     if(!this.loginService.account){
@@ -49,6 +81,7 @@ export class UpdateStudentComponent implements OnInit {
     headers.append('Content-Type','application/json');
     let options = new RequestOptions({headers : headers});
     options.headers = headers;
+    console.log(this.student);
     options.body = JSON.stringify(this.student);
     this.http.put("/api/updateStudent", options.body, options)
       .map(res => res.text())
@@ -56,37 +89,5 @@ export class UpdateStudentComponent implements OnInit {
         console.log(res);
         this.notifyMessage(res);
       });
-  }
-
-  notifyMessage(message:string){
-    if(message.indexOf("OK") !== -1){
-      $.notify(message, {
-        type: 'success',
-        delay : 2000,
-        newest_on_top: true,
-        placement: {
-          from: "top",
-          align: "center"
-        },
-        animate: {
-          enter: 'animated fadeInDown',
-          exit: 'animated fadeOutUp'
-        }
-      });
-    }else{
-      $.notify(message, {
-        type: 'danger',
-        delay : 2000,
-        newest_on_top: true,
-        placement: {
-          from: "top",
-          align: "center"
-        },
-        animate: {
-          enter: 'animated fadeInDown',
-          exit: 'animated fadeOutUp'
-        }
-      });
-    }
   }
 }

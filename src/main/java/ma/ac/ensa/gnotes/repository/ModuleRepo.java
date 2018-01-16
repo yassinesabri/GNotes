@@ -12,4 +12,6 @@ public interface ModuleRepo extends JpaRepository<Module,Long>{
     public List<Module> findByEnseignant(Enseignant enseignant);
     @Query("select m from Module m where m.enseignant is null")
     public List<Module> findByEnseignant_NumeroNull();
+    public List<Module> findByCycleAndFiliere(String cycle,String filiere);
+    public List<Module> findByCycle(String cycle);
 }
