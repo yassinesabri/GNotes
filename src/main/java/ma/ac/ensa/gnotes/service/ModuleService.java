@@ -26,6 +26,16 @@ public class ModuleService {
         return moduleRepo.findByNumero(numero);
     }
 
+    public ModuleVO findByNumeroVO(String numero){
+        Module module = moduleRepo.findByNumero(numero);
+        if(module == null){
+            return null;
+        }else{
+            ModuleVO moduleVO = modelMapper.map(module, ModuleVO.class);
+            return moduleVO;
+        }
+    }
+
     public List<ModuleVO> findNotByEnseignant_Id(){
         List<Module> modules = moduleRepo.findByEnseignant_NumeroNull();
         List<ModuleVO> moduleVOS = new ArrayList<>();
@@ -35,7 +45,24 @@ public class ModuleService {
         }
         return moduleVOS;
     }
-
+    public List<ModuleVO> findAllVO(){
+        List<Module> modules = moduleRepo.findAll();
+        List<ModuleVO> moduleVOS = new ArrayList<>();
+        for(Module module:modules){
+            ModuleVO moduleVO = modelMapper.map(module, ModuleVO.class);
+            moduleVOS.add(moduleVO);
+        }
+        return moduleVOS;
+    }
+    public List<ModuleVO> findByName(String name){
+        List<Module> modules = moduleRepo.findByNomContains(name);
+        List<ModuleVO> moduleVOS = new ArrayList<>();
+        for(Module module:modules){
+            ModuleVO moduleVO = modelMapper.map(module, ModuleVO.class);
+            moduleVOS.add(moduleVO);
+        }
+        return moduleVOS;
+    }
     public Module save(Module module){
         return moduleRepo.save(module);
     }
@@ -56,4 +83,8 @@ public class ModuleService {
         return moduleVOS;
     }
 
+    public void deleteById(long id)
+    {
+        moduleRepo.deleteById(id);
+    }
 }

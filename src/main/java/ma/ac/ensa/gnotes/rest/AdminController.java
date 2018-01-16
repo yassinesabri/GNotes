@@ -276,4 +276,48 @@ public class AdminController {
     public List<ModuleVO> fetchModules(){
         return moduleService.findNotByEnseignant_Id();
     }
+
+    @RequestMapping(value = "createModule", method = RequestMethod.POST)
+    public String createModule(@RequestBody ModuleVO moduleVO){
+        ModuleVO search = moduleService.findByNumeroVO(moduleVO.getNumero());
+        if(search == null){
+            Module module = modelMapper.map(moduleVO, Module.class);
+            moduleService.save(module);
+            return "OK : ajouté avec succès";
+        }else{
+            return "KO : module déjà existant";
+        }
+    }
+
+    @RequestMapping(value = "fetchModules/{nom}", method = RequestMethod.GET)
+    public List<ModuleVO> fetchModules(@PathVariable("nom") String nom){
+        if(nom.equals("nothing")){
+            return moduleService.findAllVO();
+        }else{
+            return moduleService.findByName(nom);
+        }
+    }
+
+    @RequestMapping(value = "fetchModule/{numero}", method = RequestMethod.GET)
+    public ModuleVO fetchModule(@PathVariable("numero") String numero){
+        return moduleService.findByNumeroVO(numero);
+    }
+
+    @RequestMapping(value = "updateModule", method = RequestMethod.PUT)
+    public String updateModule(@RequestBody ModuleVO moduleVO){
+        Module oldModule = moduleService.findByNumero(moduleVO.getNumero());
+        Module module = modelMapper.map(moduleVO, Module.class);
+        module.setEnseignant(oldModule.getEnseignant());
+        module.setEtudiantModuleList(oldModule.getEtudiantModuleList());
+        //System.out.println(module);
+        moduleService.save(module);
+        return "OK : update avec succès";
+    }
+
+    @RequestMapping(value = "deleteModule/{id}", method = RequestMethod.DELETE)
+    public String deleteModule(@PathVariable("id") String id){
+        System.out.println("id:"+id);
+        moduleService.deleteById((long)Integer.parseInt(id));
+        return "OK : supression avec succès";
+    }
 }

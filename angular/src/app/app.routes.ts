@@ -13,6 +13,10 @@ import {UpdateTeacherComponent} from "./admin/teachers/update-teacher/update-tea
 import {ReleveDeNoteComponent} from "./etudiant/releve-de-note/releve-de-note.component";
 import {TeacherComponent} from "./teacher/modules/teacher.component";
 import {ModuleStudentsComponent} from "./teacher/Students/modulestudents.component";
+import {ModulesComponent} from "./admin/modules/modules.component";
+import {CreateModuleComponent} from "./admin/modules/create-module/create-module.component";
+import {UpdateModulesComponent} from "./admin/modules/update-modules/update-modules.component";
+import {UpdateModuleComponent} from "./admin/modules/update-module/update-module.component";
 
 export const routes: Routes = [
   {path: '', pathMatch : 'full', redirectTo: 'login'},
@@ -26,6 +30,11 @@ export const routes: Routes = [
   {path: 'teachers' , component : TeachersComponent},
   {path: 'createTeacher' , component : CreateTeacherComponent},
   {path: 'updateTeacher/:teacherNumber' , component : UpdateTeacherComponent},
+  {path: 'updateTeachers' , component : UpdateTeachersComponent},
+  {path: 'modules' , component : ModulesComponent},
+  {path: 'createModule' , component : CreateModuleComponent},
+  {path: 'updateModule/:moduleNumber' , component : UpdateModuleComponent},
+  {path: 'updateModules' , component : UpdateModulesComponent},
   {path: 'updateTeachers' , component : UpdateTeachersComponent},
   {path: 'releveDeNote/:cycle' , component : ReleveDeNoteComponent},
   {path: 'teacher', component : TeacherComponent},
