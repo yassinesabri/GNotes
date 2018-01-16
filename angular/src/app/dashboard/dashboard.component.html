@@ -55,6 +55,12 @@
                 <span class="menu-text">Gestion Enseignants</span>
               </a>
             </li>
+            <li>
+              <a routerLink="/modules" routerLinkActive="true">
+                <i class="fa fa-wrench fa-fw"></i>
+                <span class="menu-text">Gestion Modules</span>
+              </a>
+            </li>
           </ng-container>
           <!-- Menu for Teacher-->
           <ng-container *ngIf="loginAccount && loginAccount.privilege=='TEACHER'">

@@ -1,0 +1,54 @@
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Modifier un module</h1>
+    </div>
+    <div class="col-lg-6">
+      <form role="form" (ngSubmit)="updateModule()" #moduleForm="ngForm" *ngIf="module">
+        <div class="form-group"
+             [ngClass]="{
+                  'has-success' : Numero.valid && (Numero.dirty || Numero.touched),
+                  'has-error' : Numero.invalid && (Numero.dirty || Numero.touched)
+             }">
+          <label>Numero</label>
+          <input class="form-control" name="Numero" [(ngModel)]="module.numero" required #Numero="ngModel">
+          <p class="help-block" *ngIf="Numero.errors && Numero.errors.required && (Numero.dirty || Numero.touched) ">Champs obligatoire</p>
+        </div>
+
+        <div class="form-group"
+             [ngClass]="{
+                  'has-success' : Nom.valid && (Nom.dirty || Nom.touched),
+                  'has-error' : Nom.invalid && (Nom.dirty || Nom.touched)
+             }">
+          <label>Nom</label>
+          <input class="form-control" name="Nom" [(ngModel)]="module.nom" required #Nom="ngModel">
+          <p class="help-block" *ngIf="Nom.errors && Nom.errors.required && (Nom.dirty || Nom.touched) ">Champs obligatoire</p>
+        </div>
+
+        <div class="form-group">
+          <label>Cycle</label>
+          <select class="form-control" name="Cycle" [(ngModel)]="module.cycle">
+            <option *ngFor="let cycle of cycles" [value]="cycle">{{cycle}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Filiere</label>
+          <select class="form-control" name="Filiere" [(ngModel)]="module.filiere" [disabled]="module.cycle=='CP1' || module.cycle=='CP2'">
+            <option *ngFor="let filiere of filieres" [value]="filiere">{{filiere}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Semestre</label>
+          <select class="form-control" name="Semestre" [(ngModel)]="module.semestre">
+            <option *ngFor="let semestre of semesters" [value]="semestre">{{semestre}}</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="studentForm.invalid">Update</button>
+      </form>
+    </div>
+  </div>
+</div>
+

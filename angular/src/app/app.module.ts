@@ -20,6 +20,10 @@ import { TeachersComponent } from './admin/teachers/teachers.component';
 import { CreateTeacherComponent } from './admin/teachers/create-teacher/create-teacher.component';
 import { UpdateTeachersComponent } from './admin/teachers/update-teachers/update-teachers.component';
 import { UpdateTeacherComponent } from './admin/teachers/update-teacher/update-teacher.component';
+import { ModulesComponent } from './admin/modules/modules.component';
+import { CreateModuleComponent } from './admin/modules/create-module/create-module.component';
+import { UpdateModulesComponent } from './admin/modules/update-modules/update-modules.component';
+import { UpdateModuleComponent } from './admin/modules/update-module/update-module.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +40,10 @@ import { UpdateTeacherComponent } from './admin/teachers/update-teacher/update-t
     CreateTeacherComponent,
     UpdateTeachersComponent,
     UpdateTeacherComponent,
+    ModulesComponent,
+    CreateModuleComponent,
+    UpdateModulesComponent,
+    UpdateModuleComponent,
   ],
   imports: [
     BrowserModule,
