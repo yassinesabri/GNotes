@@ -67,6 +67,23 @@ public class ModuleService {
     public Module save(Module module){
         return moduleRepo.save(module);
     }
+
+    public List<Module> findByCycleAndFiliere(String cycle,String filiere){
+        return moduleRepo.findByCycleAndFiliere(cycle,filiere);
+    }
+    public List<Module> findByCycle(String cycle){
+        return moduleRepo.findByCycle(cycle);
+    }
+    public List<ModuleVO> findByEnseignant(Enseignant enseignant){
+        List<Module> modules = moduleRepo.findByEnseignant(enseignant);
+        List<ModuleVO> moduleVOS = new ArrayList<>();
+        for(Module module:modules){
+            ModuleVO moduleVO = modelMapper.map(module, ModuleVO.class);
+            moduleVOS.add(moduleVO);
+        }
+        return moduleVOS;
+    }
+
     public void deleteById(long id)
     {
         moduleRepo.deleteById(id);

@@ -4,7 +4,7 @@ import {LoginComponent} from "./login/login.component";
 import {StudentsComponent} from "./admin/students/students.component";
 import {CreateStudentComponent} from "./admin/students/create-student/create-student.component";
 import {UpdateStudentsComponent} from "./admin/students/update-students/update-students.component";
-import {EtudiantComponent} from "./etudiant/etudiant.component";
+import {EtudiantComponent} from "./etudiant/profile/etudiant.component";
 import {UpdateStudentComponent} from "./admin/students/update-student/update-student.component";
 import {TeachersComponent} from "./admin/teachers/teachers.component";
 import {CreateTeacherComponent} from "./admin/teachers/create-teacher/create-teacher.component";
@@ -14,6 +14,9 @@ import {ModulesComponent} from "./admin/modules/modules.component";
 import {CreateModuleComponent} from "./admin/modules/create-module/create-module.component";
 import {UpdateModulesComponent} from "./admin/modules/update-modules/update-modules.component";
 import {UpdateModuleComponent} from "./admin/modules/update-module/update-module.component";
+import {ReleveDeNoteComponent} from "./etudiant/releve-de-note/releve-de-note.component";
+import {TeacherComponent} from "./teacher/modules/teacher.component";
+import {ModuleStudentsComponent} from "./teacher/Students/modulestudents.component";
 
 export const routes: Routes = [
   {path: '', pathMatch : 'full', redirectTo: 'login'},
@@ -32,5 +35,9 @@ export const routes: Routes = [
   {path: 'createModule' , component : CreateModuleComponent},
   {path: 'updateModule/:moduleNumber' , component : UpdateModuleComponent},
   {path: 'updateModules' , component : UpdateModulesComponent},
+  {path: 'updateTeachers' , component : UpdateTeachersComponent},
+  {path: 'releveDeNote/:cycle' , component : ReleveDeNoteComponent},
+  {path: 'teacher', component : TeacherComponent},
+  {path: 'moduleStudents' , component: ModuleStudentsComponent}
 ];
 

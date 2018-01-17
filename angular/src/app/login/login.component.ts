@@ -15,13 +15,13 @@ export class LoginComponent implements OnInit {
   account : LoginAccount;
   authAccount : any;
   constructor(private router:Router,public loginService:LoginService) {
-    let login = JSON.parse(localStorage.getItem("loginAccount"));;
+    let login = JSON.parse(localStorage.getItem("loginAccount"));
     if(login) {
       if (login.privilege == "STUDENT") {
         this.router.navigate(['etudiant']);
       }
       else if (login.privilege == "TEACHER") {
-        this.router.navigate([]);
+        this.router.navigate(['teacher']);
       }
       else if (login.privilege == "ADMIN") {
         this.router.navigate(['adminImport']);
@@ -46,7 +46,9 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['etudiant']);
           }
           else if(account.privilege == "TEACHER"){
-            this.router.navigate([]);
+            this.router.navigate(['teacher']);
+            localStorage.setItem('teacher', JSON.stringify(this.account));
+
           }
           else if(account.privilege == "ADMIN"){
 
