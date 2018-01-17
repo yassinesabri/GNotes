@@ -30,8 +30,10 @@ public class EnseignantService {
     }
 
     public Enseignant save(Enseignant enseignant){
-        for(Module module:enseignant.getModules()){
-            module.setEnseignant(enseignant);
+        if(enseignant.getModules() != null){
+            for(Module module:enseignant.getModules()){
+                module.setEnseignant(enseignant);
+            }
         }
         return enseignantRepo.save(enseignant);
     }

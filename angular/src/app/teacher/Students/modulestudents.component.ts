@@ -71,6 +71,7 @@ export class ModuleStudentsComponent implements OnInit {
       $("#loading").show();
       let formData : FormData = new FormData();
       formData.append('uploadFile', this.importFile, this.importFile.name);
+      formData.append('moduleNumero',this.numeroModule);
 
       let headers = new Headers();
       headers.append('Accept', 'application/json');
