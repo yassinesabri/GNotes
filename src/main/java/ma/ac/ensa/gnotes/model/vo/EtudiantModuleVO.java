@@ -7,14 +7,14 @@ import java.util.List;
 
 public class EtudiantModuleVO {
 
-    private List<Module> ListeModule;
+    private List<ModuleVO> ListeModule;
     private List<ModuleEtudiantVO> ListetudiantModule;
 
-    public List<Module> getListeModule() {
+    public List<ModuleVO> getListeModule() {
         return ListeModule;
     }
 
-    public void setListeModule(List<Module> listeModule) {
+    public void setListeModule(List<ModuleVO> listeModule) {
         ListeModule = listeModule;
     }
 

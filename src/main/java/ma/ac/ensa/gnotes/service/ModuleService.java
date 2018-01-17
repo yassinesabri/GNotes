@@ -73,6 +73,7 @@ public class ModuleService {
     public List<Module> findByCycle(String cycle){
         return moduleRepo.findByCycle(cycle);
     }
+
     public List<ModuleVO> findByEnseignant(Enseignant enseignant){
         List<Module> modules = moduleRepo.findByEnseignant(enseignant);
         List<ModuleVO> moduleVOS = new ArrayList<>();

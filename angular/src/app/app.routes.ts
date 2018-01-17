@@ -17,7 +17,6 @@ import {ModulesComponent} from "./admin/modules/modules.component";
 import {CreateModuleComponent} from "./admin/modules/create-module/create-module.component";
 import {UpdateModulesComponent} from "./admin/modules/update-modules/update-modules.component";
 import {UpdateModuleComponent} from "./admin/modules/update-module/update-module.component";
-
 export const routes: Routes = [
   {path: '', pathMatch : 'full', redirectTo: 'login'},
   {path: 'adminImport', component: ImportAdminComponent},

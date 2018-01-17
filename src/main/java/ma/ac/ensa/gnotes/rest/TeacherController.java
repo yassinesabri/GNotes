@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -30,6 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
@@ -63,7 +65,7 @@ public class TeacherController {
     @RequestMapping(value = "fetchStudentsModules/{numero}/{annee}", method = RequestMethod.GET)
     public List<StudentModuleVO> fetchStudentsModules(@PathVariable("numero") String numero,@PathVariable("annee") String annee){
         Module module=moduleService.findByNumero(numero);
-        module.setEnseignant(null);
+        //module.setEnseignant(null);
         annee=annee.replace('_','/');
         System.out.println(annee);
         List<EtudiantModule> listeEtudiantModule=etudiantModuleService.findByModuleAndAnnee(module,annee);
@@ -85,8 +87,8 @@ public class TeacherController {
 
     @RequestMapping(value = "importTeacherFile",method = RequestMethod.POST, consumes = "multipart/form-data")
     @ResponseBody
-    public String importFile(@RequestPart("uploadFile") MultipartFile file) throws IOException {
-        String message = "Import OK : Toutes les notes sont importees";
+    public String importFile(@RequestPart("uploadFile") MultipartFile file, HttpServletRequest request) throws IOException {
+        String message = "Import OK : Toutes les notes du module sont importees";
 
 //        logger.info("Start Import (fileName : " + file.getOriginalFilename() + ")");
 //
@@ -108,7 +110,7 @@ public class TeacherController {
         cell = row.getCell(12);
         String annee=cell.getStringCellValue();
 //        System.out.println("Annee:   "+annee);
-        String numeroModule="NII44104";
+        String numeroModule=request.getParameterMap().get("moduleNumero")[0];
         System.out.println("numeroModule:   "+numeroModule);
         int j=4;
         row = sheet.getRow(13);

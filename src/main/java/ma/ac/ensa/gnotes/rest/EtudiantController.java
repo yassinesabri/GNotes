@@ -7,9 +7,11 @@ import ma.ac.ensa.gnotes.model.Module;
 import ma.ac.ensa.gnotes.model.vo.EtudiantModuleVO;
 import ma.ac.ensa.gnotes.model.vo.EtudiantVO;
 import ma.ac.ensa.gnotes.model.vo.ModuleEtudiantVO;
+import ma.ac.ensa.gnotes.model.vo.ModuleVO;
 import ma.ac.ensa.gnotes.service.EtudiantModuleService;
 import ma.ac.ensa.gnotes.service.EtudiantService;
 import ma.ac.ensa.gnotes.service.ModuleService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,9 @@ public class EtudiantController {
     @Autowired
     private EtudiantModuleService etudiantModuleService;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
 //    @RequestMapping(value = "/etudiant",  method = RequestMethod.GET, produces = "application/json")
 //    public Etudiant getEtudiant(){
 //        Etudiant etudiant=etudiantService.findByNumero("1500016");
@@ -41,12 +46,18 @@ public class EtudiantController {
     @RequestMapping(value = "fetchStudentModules/{cycle}/{filiere}/{etudiant_numero}", method = RequestMethod.GET)
     public EtudiantModuleVO fetchStudentModules(@PathVariable("cycle") String cycle, @PathVariable("filiere") String filiere,@PathVariable("etudiant_numero") String etudiant_numero){
         List<Module> listModules;
+        List<ModuleVO> listModulesVO = new ArrayList<>();
         System.out.println(cycle);
         if(filiere.equals("none")) {
             listModules=this.moduleService.findByCycle(cycle);
 //            System.out.println(listModules);
         }else{
             listModules=this.moduleService.findByCycleAndFiliere(cycle,filiere);
+        }
+        //eviter stackoverflow
+        for(Module module:listModules){
+            ModuleVO moduleVO = modelMapper.map(module, ModuleVO.class);
+            listModulesVO.add(moduleVO);
         }
         Etudiant etudiant=this.etudiantService.findByNumero(etudiant_numero);
         List<EtudiantModule> etudiantModules=new ArrayList<EtudiantModule>();
@@ -67,7 +78,7 @@ public class EtudiantController {
             modulesEtudiantVO.add(et);
         }
         EtudiantModuleVO etudiantModuleVO=new EtudiantModuleVO();
-        etudiantModuleVO.setListeModule(listModules);
+        etudiantModuleVO.setListeModule(listModulesVO);
         etudiantModuleVO.setListetudiantModule(modulesEtudiantVO);
         return etudiantModuleVO;
 
